@@ -1,7 +1,7 @@
 {
     "appid": "46615E8C-69DD-4B8F-94D1-290EFA867143",
     "name": "WMI",
-    "description": "This App implements investigative actions like 'run query', 'list services', 'get system info' etc. using the WMI WQL, that are executed on a Windows endpoint.",
+    "description": "This App uses the WMI WQL to implement investigative actions that are executed on a Windows endpoint",
     "publisher": "Phantom",
     "type": "endpoint",
     "main_module": "wmi_connector.pyc",
@@ -11,10 +11,15 @@
     "product_vendor": "Microsoft",
     "product_name": "Windows Server",
     "product_version_regex": ".*",
-    "min_phantom_version": "1.2.236",
+    "min_phantom_version": "3.0.251",
     "logo": "logo_microsoft.svg",
     "logo_dark": "logo_microsoft_dark.svg",
     "license": "Copyright (c) Phantom Cyber Corporation, 2015-2018",
+    "pip_dependencies": {
+      "wheel": [
+        {"module": "python-rtkit", "input_file": "wheels/wmi-client-wrapper-0.0.12.tar.gz"}
+      ]
+    },
     "configuration": {
         "server": {
             "data_type": "string",
