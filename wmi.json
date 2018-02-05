@@ -12,8 +12,8 @@
     "product_name": "Windows Server",
     "product_version_regex": ".*",
     "min_phantom_version": "3.0.251",
-    "logo": "logo_microsoft.svg",
-    "logo_dark": "logo_microsoft_dark.svg",
+    "logo": "logo_microsoft_wmi.svg",
+    "logo_dark": "logo_microsoft_wmi_dark.svg",
     "license": "Copyright (c) Phantom Cyber Corporation, 2015-2018",
     "pip_dependencies": {
         "wheel": [
