@@ -1,7 +1,7 @@
 # --
 # File: wmi_connector.py
 #
-# Copyright (c) Phantom Cyber Corporation, 2014-2016
+# Copyright (c) Phantom Cyber Corporation, 2014-2018
 #
 # This unpublished material is proprietary to Phantom Cyber.
 # All rights reserved. The methods and
@@ -21,8 +21,7 @@ from phantom.action_result import ActionResult
 from wmi_consts import *
 
 import re
-# import wmi_client_wrapper as wmi
-import wrapper as wmi
+import wmi_client_wrapper as wmi
 
 
 class WmiConnector(BaseConnector):
@@ -248,6 +247,7 @@ class WmiConnector(BaseConnector):
                 action_result.add_data(query_results)
 
         return phantom.APP_SUCCESS
+
 
 if __name__ == '__main__':
 
