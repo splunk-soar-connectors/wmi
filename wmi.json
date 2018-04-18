@@ -19,7 +19,7 @@
         "wheel": [
             {
                 "module": "wmi-client-wrapper",
-                "input_file": "wheels/wmi-client-wrapper-0.0.12.tar.gz"
+                "input_file": "wmi-client-wrapper-ntlmv2/wmi_client_wrapper-0.0.12-py2-none-any.whl"
             }
         ]
     },
@@ -45,6 +45,12 @@
             "order": 3,
             "description": "Administrator password",
             "required": true
+        },
+        "force_ntlmv2": {
+            "data_type": "boolean",
+            "order": 4,
+            "description": "Add option to force NTLMv2 (Used only for WMI)",
+            "required": false
         }
     },
     "actions": [
@@ -69,6 +75,11 @@
                     ],
                     "primary": true,
                     "required": true
+                },
+                "namespace": {
+                    "description": "Namespace",
+                    "data_type": "string",
+                    "order": 1
                 }
             },
             "render": {
@@ -279,6 +290,11 @@
                     ],
                     "primary": true,
                     "required": true
+                },
+                "namespace": {
+                    "description": "Namespace",
+                    "data_type": "string",
+                    "order": 1
                 }
             },
             "render": {
@@ -884,6 +900,11 @@
                     ],
                     "primary": true,
                     "required": true
+                },
+                "namespace": {
+                    "description": "Namespace",
+                    "data_type": "string",
+                    "order": 1
                 }
             },
             "render": {
@@ -1022,7 +1043,13 @@
                 },
                 "query": {
                     "description": "Query (in WQL format)",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "order": 1
+                },
+                "namespace": {
+                    "description": "Namespace",
+                    "data_type": "string",
+                    "order": 2
                 }
             },
             "render": {
