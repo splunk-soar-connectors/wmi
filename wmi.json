@@ -91,7 +91,10 @@
             "output": [
                 {
                     "data_path": "action_result.status",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "success"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.ip_hostname",
@@ -99,63 +102,114 @@
                     "contains": [
                         "ip",
                         "host name"
+                    ],
+                    "example_values": [
+                        "10.1.17.42"
                     ]
                 },
                 {
+                    "data_path": "action_result.parameter.namespace",
+                    "data_type": "string"
+                },
+                {
                     "data_path": "action_result.data.*.AcceptPause",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.AcceptStop",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.Caption",
                     "data_type": "string",
                     "column_name": "Caption",
-                    "column_order": 4
+                    "column_order": 4,
+                    "example_values": [
+                        "Active Directory Web Services"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.CheckPoint",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.CreationClassName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Win32_Service"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.Description",
                     "data_type": "string",
                     "column_name": "Description",
-                    "column_order": 13
+                    "column_order": 13,
+                    "example_values": [
+                        "This service provides a Web Service interface to instances of the directory service (AD DS and AD LDS) that are running locally on this server. If this service is stopped or disabled, client applications, such as Active Directory PowerShell, will not be able to access or manage any directory service instances that are running locally on this server."
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.DesktopInteract",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.DisconnectedSessions",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.DisplayName",
                     "data_type": "string",
                     "column_name": "Display Name",
-                    "column_order": 0
+                    "column_order": 0,
+                    "example_values": [
+                        "Active Directory Web Services"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ErrorControl",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Normal"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ExitCode",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.InstallDate",
+                    "data_type": "string",
+                    "example_values": []
                 },
                 {
                     "data_path": "action_result.data.*.Name",
                     "data_type": "string",
                     "column_name": "Name",
-                    "column_order": 7
+                    "column_order": 7,
+                    "example_values": [
+                        "ADWS"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.PathName",
@@ -165,17 +219,10 @@
                         "file name"
                     ],
                     "column_name": "Path Name",
-                    "column_order": 3
-                },
-                {
-                    "data_path": "action_result.data.*.PathName",
-                    "data_type": "string",
-                    "contains": [
-                        "file path",
-                        "file name"
-                    ],
-                    "column_name": "Path Name",
-                    "column_order": 8
+                    "column_order": 8,
+                    "example_values": [
+                        "C:\\Windows\\ADWS\\Microsoft.ActiveDirectory.WebServices.exe"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ProcessId",
@@ -184,87 +231,142 @@
                         "pid"
                     ],
                     "column_name": "Pid",
-                    "column_order": 9
+                    "column_order": 9,
+                    "example_values": [
+                        "1328"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ServiceSpecificExitCode",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ServiceType",
                     "data_type": "string",
                     "column_name": "Service Type",
-                    "column_order": 10
+                    "column_order": 10,
+                    "example_values": [
+                        "Own Process"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.StartMode",
                     "data_type": "string",
                     "column_name": "Start Mode",
-                    "column_order": 5
+                    "column_order": 5,
+                    "example_values": [
+                        "Auto"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.StartName",
                     "data_type": "string",
                     "column_name": "Start Name",
-                    "column_order": 6
+                    "column_order": 6,
+                    "example_values": [
+                        "LocalSystem"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.Started",
                     "data_type": "boolean",
                     "column_name": "Started",
-                    "column_order": 1
+                    "column_order": 1,
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.State",
                     "data_type": "string",
                     "column_name": "State",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "Running"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.Status",
                     "data_type": "string",
                     "column_name": "Status",
-                    "column_order": 11
+                    "column_order": 11,
+                    "example_values": [
+                        "OK"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.SystemCreationClassName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Win32_ComputerSystem"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.SystemName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "DC1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.TagId",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.TotalSessions",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "4"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.WaitHint",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.summary.running_services",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        69
+                    ]
                 },
                 {
                     "data_path": "action_result.summary.total_services",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        150
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Running services: 69, Total services: 150"
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 }
             ],
             "versions": "EQ(*)"
@@ -306,7 +408,10 @@
             "output": [
                 {
                     "data_path": "action_result.status",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "success"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.ip_hostname",
@@ -314,357 +419,627 @@
                     "contains": [
                         "ip",
                         "host name"
+                    ],
+                    "example_values": [
+                        "10.1.17.42"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.namespace",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.boot_config_details.BootDirectory",
                     "data_type": "string",
                     "contains": [
                         "file path"
+                    ],
+                    "example_values": [
+                        "C:\\Windows"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.boot_config_details.Caption",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "\\Device\\Harddisk0\\Partition1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.boot_config_details.ConfigurationPath",
                     "data_type": "string",
                     "contains": [
                         "file path"
+                    ],
+                    "example_values": [
+                        "C:\\Windows"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.boot_config_details.Description",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "\\Device\\Harddisk0\\Partition1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.boot_config_details.LastDrive",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "D:"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.boot_config_details.Name",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "BootConfiguration"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.boot_config_details.ScratchDirectory",
                     "data_type": "string",
                     "contains": [
                         "file path"
+                    ],
+                    "example_values": [
+                        "C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
                     ]
+                },
+                {
+                    "data_path": "action_result.data.*.boot_config_details.SettingID",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.boot_config_details.TempDirectory",
                     "data_type": "string",
                     "contains": [
                         "file path"
+                    ],
+                    "example_values": [
+                        "C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.BootDevice",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "\\Device\\HarddiskVolume1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.BuildNumber",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "7601"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.BuildType",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Multiprocessor Free"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.CSCreationClassName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Win32_ComputerSystem"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.CSDVersion",
                     "data_type": "string",
                     "column_name": "SP Version",
-                    "column_order": 4
+                    "column_order": 4,
+                    "example_values": [
+                        "Service Pack 1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.CSName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "DC1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Caption",
                     "data_type": "string",
+                    "example_values": [
+                        "Microsoft Windows Server 2008 R2 Enterprise "
+                    ],
                     "column_name": "OS",
                     "column_order": 1
                 },
                 {
-                    "data_path": "action_result.data.*.os_details.Caption",
-                    "data_type": "string"
-                },
-                {
                     "data_path": "action_result.data.*.os_details.CodeSet",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1252"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.CountryCode",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.CreationClassName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Win32_OperatingSystem"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.CurrentTimeZone",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "-420"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.DataExecutionPrevention_32BitApplications",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.DataExecutionPrevention_Available",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.DataExecutionPrevention_Drivers",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.DataExecutionPrevention_SupportPolicy",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "3"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Debug",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Description",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Active Directory Server 1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Distributed",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.EncryptionLevel",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "256"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.ForegroundApplicationBoost",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "2"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.FreePhysicalMemory",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "2091584"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.FreeSpaceInPagingFiles",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "4176236"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.FreeVirtualMemory",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "6127192"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.InstallDate",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "20140817185509.000000-420"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.LargeSystemCache",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.LastBootUpTime",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "20180913031837.282679-420"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.LocalDateTime",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "20180926081041.684000-420"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Locale",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0409"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.MUILanguages",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "en-US"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Manufacturer",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Microsoft Corporation"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.MaxNumberOfProcesses",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "4294967295"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.MaxProcessMemorySize",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "8589934464"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Name",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Microsoft Windows Server 2008 R2 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.NumberOfLicensedUsers",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.NumberOfProcesses",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "92"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.NumberOfUsers",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "5"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.OSArchitecture",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "64-bit"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.OSLanguage",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1033"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.OSProductSuite",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "274"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.OSType",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "18"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.OperatingSystemSKU",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "10"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Organization",
+                    "data_type": "string",
+                    "example_values": [
+                        ""
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.os_details.OtherTypeDescription",
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.os_details.PAEEnabled",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.os_details.PlusProductID",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.os_details.PlusVersionNumber",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Primary",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.ProductType",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "2"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.RegisteredUser",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Windows User"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.SerialNumber",
                     "data_type": "string",
                     "column_name": "Serial Number",
-                    "column_order": 6
+                    "column_order": 6,
+                    "example_values": [
+                        "55041-507-8256601-84196"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.ServicePackMajorVersion",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.ServicePackMinorVersion",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.SizeStoredInPagingFiles",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "4193848"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Status",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "OK"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.SuiteMask",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "274"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.SystemDevice",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "\\Device\\HarddiskVolume2"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.SystemDirectory",
                     "data_type": "string",
                     "contains": [
                         "file path"
+                    ],
+                    "example_values": [
+                        "C:\\Windows\\system32"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.SystemDrive",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "C:"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.TotalSwapSpaceSize",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.TotalVirtualMemorySize",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "8385800"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.TotalVisibleMemorySize",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "4193848"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Version",
                     "data_type": "string",
                     "column_name": "Version",
-                    "column_order": 2
+                    "column_order": 2,
+                    "example_values": [
+                        "6.1.7601"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.os_details.WindowsDirectory",
                     "data_type": "string",
                     "contains": [
                         "file path"
+                    ],
+                    "example_values": [
+                        "C:\\Windows"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.AdminPasswordStatus",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.AutomaticManagedPagefile",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.AutomaticResetBootOption",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.AutomaticResetCapability",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.BootOptionOnLimit",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "3"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.BootOptionOnWatchDog",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "3"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.BootROMSupported",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.BootupState",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Normal boot"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.Caption",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "DC1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.ChassisBootupState",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "3"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.CreationClassName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Win32_ComputerSystem"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.CurrentTimeZone",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "-420"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.DNSHostName",
@@ -673,15 +1048,25 @@
                         "host name"
                     ],
                     "column_name": "DNS Host Name",
-                    "column_order": 0
+                    "column_order": 0,
+                    "example_values": [
+                        "DC1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.DaylightInEffect",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.Description",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "AT/AT COMPATIBLE"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.Domain",
@@ -690,152 +1075,301 @@
                         "domain"
                     ],
                     "column_name": "Domain",
-                    "column_order": 5
+                    "column_order": 5,
+                    "example_values": [
+                        "corp.contoso.com"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.DomainRole",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "5"
+                    ],
+                    "contains": [
+                        "domain"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.EnableDaylightSavingsTime",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.FrontPanelResetStatus",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "3"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.InfraredSupported",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.InitialLoadInfo",
+                    "data_type": "string",
+                    "example_values": [
+                        "NULL"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.system_details.InstallDate",
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.system_details.KeyboardPasswordStatus",
+                    "data_type": "string",
+                    "example_values": [
+                        "3"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.system_details.LastLoadInfo",
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.system_details.Manufacturer",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "VMware, Inc."
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.Model",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "VMware Virtual Platform"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.Name",
+                    "data_type": "string",
+                    "example_values": [
+                        "DC1"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.system_details.NameFormat",
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.system_details.NetworkServerModeEnabled",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.NumberOfLogicalProcessors",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "2"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.NumberOfProcessors",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.OEMLogoBitmap",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "NULL"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.OEMStringArray",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "[MS_VM_CERT/SHA1/27d66596a61c48dd3dc7216fd715126e33f59ae7],Welcome to the Virtual Machine"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.PCSystemType",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.PartOfDomain",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ],
+                    "contains": [
+                        "domain"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.PauseAfterReset",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "3932100000"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.PowerManagementCapabilities",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "NULL"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.PowerManagementSupported",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.PowerOnPasswordStatus",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.PowerState",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.PowerSupplyState",
+                    "data_type": "string",
+                    "example_values": [
+                        "3"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.system_details.PrimaryOwnerContact",
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.system_details.PrimaryOwnerName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Windows User"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.ResetCapability",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.ResetCount",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "-1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.ResetLimit",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "-1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.Roles",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "LM_Workstation,LM_Server,Primary_Domain_Controller,Timesource,NT,DFS"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.Status",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "OK"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.SupportContactDescription",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "NULL"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.SystemStartupDelay",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.SystemStartupOptions",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "NULL"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.SystemStartupSetting",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.SystemType",
                     "data_type": "string",
                     "column_name": "System Type",
-                    "column_order": 3
+                    "column_order": 3,
+                    "example_values": [
+                        "x64-based PC"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.ThermalState",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "3"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.TotalPhysicalMemory",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "4294500352"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.system_details.UserName",
+                    "data_type": "string",
+                    "contains": [
+                        "user name"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.system_details.WakeUpType",
+                    "data_type": "string",
+                    "example_values": [
+                        "6"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.system_details.Workgroup",
                     "data_type": "string"
                 },
                 {
@@ -843,6 +1377,9 @@
                     "data_type": "string",
                     "contains": [
                         "host name"
+                    ],
+                    "example_values": [
+                        "DC1"
                     ]
                 },
                 {
@@ -850,31 +1387,50 @@
                     "data_type": "string",
                     "contains": [
                         "domain"
+                    ],
+                    "example_values": [
+                        "corp.contoso.com"
                     ]
                 },
                 {
                     "data_path": "action_result.summary.memory",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "4294500352"
+                    ]
                 },
                 {
                     "data_path": "action_result.summary.version",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Microsoft Windows Server 2008 R2 Enterprise  [6.1.7601] 64-bit Service Pack 1"
+                    ]
                 },
                 {
                     "data_path": "action_result.summary.workgroup",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": []
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Dns hostname: DC1\nDomain: corp.contoso.com\nVersion: Microsoft Windows Server 2008 R2 Enterprise  [6.1.7601] 64-bit Service Pack 1\nWorkgroup: None\nMemory: 4294500352"
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 }
             ],
             "versions": "EQ(*)"
@@ -916,7 +1472,10 @@
             "output": [
                 {
                     "data_path": "action_result.status",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "success"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.ip_hostname",
@@ -926,13 +1485,26 @@
                         "host name"
                     ],
                     "column_name": "System",
-                    "column_order": "12"
+                    "column_order": "12",
+                    "example_values": [
+                        "10.1.17.42"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.namespace",
+                    "data_type": "string",
+                    "example_values": [
+                        "root\\cimv2"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.AccountType",
                     "data_type": "string",
                     "column_name": "Account Type",
-                    "column_order": "2"
+                    "column_order": "2",
+                    "example_values": [
+                        "512"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.Caption",
@@ -941,88 +1513,174 @@
                         "user name"
                     ],
                     "column_name": "User Name",
-                    "column_order": "0"
+                    "column_order": "0",
+                    "example_values": [
+                        "CORP\\Administrator"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.Description",
                     "data_type": "string",
                     "column_name": "Description",
-                    "column_order": "3"
+                    "column_order": "3",
+                    "example_values": [
+                        "Built-in account for administering the computer/domain"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.Disabled",
                     "data_type": "boolean",
                     "column_name": "Disabled",
-                    "column_order": "1"
+                    "column_order": "1",
+                    "example_values": [
+                        false,
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.Domain",
+                    "data_type": "string",
+                    "example_values": [
+                        "CORP"
+                    ],
+                    "contains": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.FullName",
+                    "data_type": "string",
+                    "example_values": [
+                        "The Administrator"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.InstallDate",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.LocalAccount",
                     "data_type": "boolean",
                     "column_name": "Local Account",
-                    "column_order": "5"
+                    "column_order": "5",
+                    "example_values": [
+                        false,
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.Lockout",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.Name",
                     "data_type": "string",
                     "column_name": "Name",
-                    "column_order": "6"
+                    "column_order": "6",
+                    "example_values": [
+                        "Administrator"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.PasswordChangeable",
                     "data_type": "boolean",
                     "column_name": "Password Changeable",
-                    "column_order": "7"
+                    "column_order": "7",
+                    "example_values": [
+                        false,
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.PasswordExpires",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.PasswordRequired",
                     "data_type": "boolean",
                     "column_name": "Password Required",
-                    "column_order": "8"
+                    "column_order": "8",
+                    "example_values": [
+                        false,
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.SID",
                     "data_type": "string",
                     "column_name": "SID",
-                    "column_order": "9"
+                    "column_order": "9",
+                    "example_values": [
+                        "S-1-5-21-3790544232-372029393-2474287633-500"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.SIDType",
                     "data_type": "string",
                     "column_name": "SID Type",
-                    "column_order": "10"
+                    "column_order": "10",
+                    "example_values": [
+                        "1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.Status",
                     "data_type": "string",
                     "column_name": "Status",
-                    "column_order": "11"
+                    "column_order": "11",
+                    "example_values": [
+                        "OK"
+                    ]
                 },
                 {
                     "data_path": "action_result.summary.disabled_users",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        9
+                    ]
                 },
                 {
                     "data_path": "action_result.summary.total_users",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        57
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Total users: 57, Disabled users: 9"
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 }
             ],
             "versions": "EQ(*)"
         },
         {
             "action": "run query",
-            "description": "Run an arbitary query using WQL on the system",
+            "description": "Run an arbitrary query using WQL on the system",
             "type": "investigate",
             "identifier": "run_query",
             "read_only": true,
@@ -1044,7 +1702,8 @@
                 "query": {
                     "description": "Query (in WQL format)",
                     "data_type": "string",
-                    "order": 1
+                    "order": 1,
+                    "required": true
                 },
                 "namespace": {
                     "description": "Namespace",
@@ -1061,7 +1720,10 @@
             "output": [
                 {
                     "data_path": "action_result.status",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "success"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.ip_hostname",
@@ -1069,197 +1731,377 @@
                     "contains": [
                         "ip",
                         "host name"
+                    ],
+                    "column_name": "System",
+                    "column_order": "3",
+                    "example_values": [
+                        "10.1.17.42"
                     ]
                 },
                 {
-                    "data_path": "action_result.parameter.query",
+                    "data_path": "action_result.parameter.namespace",
                     "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.query",
+                    "data_type": "string",
+                    "example_values": [
+                        "Select * From Win32_Process"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.CSCreationClassName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Win32_ComputerSystem"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.CSName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "CSName",
+                    "column_order": "4",
+                    "example_values": [
+                        "DC1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.Caption",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "System Idle Process"
+                    ],
+                    "contains": [
+                        "file name"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.CommandLine",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [],
+                    "contains": [
+                        "file name",
+                        "file path"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.CreationClassName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Win32_Process"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.CreationDate",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Creation Date",
+                    "column_order": "5",
+                    "example_values": [
+                        "20180913031853.895628-420"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.Description",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Description",
+                    "column_order": "6",
+                    "example_values": [
+                        "System Idle Process"
+                    ],
+                    "contains": [
+                        "file name"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.ExecutablePath",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Executable Path",
+                    "column_order": "7",
+                    "example_values": [],
+                    "contains": [
+                        "file path",
+                        "file name"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.ExecutionState",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Execution State",
+                    "column_order": "8",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.Handle",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.HandleCount",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.InstallDate",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": []
                 },
                 {
                     "data_path": "action_result.data.*.*.KernelModeTime",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "22064786432032"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.MaximumWorkingSetSize",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.MinimumWorkingSetSize",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.Name",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Name",
+                    "column_order": "2",
+                    "example_values": [
+                        "System Idle Process"
+                    ],
+                    "contains": [
+                        "file name"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.OSCreationClassName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Win32_OperatingSystem"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.OSName",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "OS Name",
+                    "column_order": "9",
+                    "example_values": [
+                        "Microsoft Windows Server 2008 R2 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.OtherOperationCount",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.OtherTransferCount",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.PageFaults",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.PageFileUsage",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.ParentProcessId",
                     "data_type": "string",
                     "contains": [
                         "pid"
+                    ],
+                    "column_name": "Parent Process Id",
+                    "column_order": "10",
+                    "example_values": [
+                        "0"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.*.PeakPageFileUsage",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.PeakVirtualSize",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.PeakWorkingSetSize",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "24"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.Priority",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.PrivatePageCount",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.ProcessId",
                     "data_type": "string",
                     "contains": [
                         "pid"
+                    ],
+                    "column_name": "Process Id",
+                    "column_order": "0",
+                    "example_values": [
+                        "0"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.*.QuotaNonPagedPoolUsage",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.QuotaPagedPoolUsage",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.QuotaPeakNonPagedPoolUsage",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.QuotaPeakPagedPoolUsage",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.ReadOperationCount",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.ReadTransferCount",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.SessionId",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Session Id",
+                    "column_order": "1",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.Status",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": "11",
+                    "example_values": []
                 },
                 {
                     "data_path": "action_result.data.*.*.TerminationDate",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Termination Date",
+                    "column_order": "12",
+                    "example_values": []
                 },
                 {
                     "data_path": "action_result.data.*.*.ThreadCount",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "2"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.UserModeTime",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.VirtualSize",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.WindowsVersion",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Windows Version",
+                    "column_order": "13",
+                    "example_values": [
+                        "6.1.7601"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.WorkingSetSize",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "24576"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.WriteOperationCount",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.*.WriteTransferCount",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "0"
+                    ]
                 },
                 {
                     "data_path": "action_result.summary",
@@ -1267,15 +2109,24 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "WMI Query executed"
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 }
             ],
             "versions": "EQ(*)"
