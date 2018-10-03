@@ -374,7 +374,7 @@
         {
             "action": "get system info",
             "description": "Get information about a system",
-            "verbose": "For information on Namespaces of Windows Management Instrumentation, refer to the 'Namespace Parameter' section in the documentation",
+            "verbose": "For information on Namespaces of Windows Management Instrumentation, refer to the 'Namespace Parameter' section in the documentation.",
             "type": "investigate",
             "identifier": "get_sysinfo",
             "read_only": true,
@@ -1439,7 +1439,7 @@
         {
             "action": "list users",
             "description": "List users configured on a system",
-            "verbose": "For information on Namespaces of Windows Management Instrumentation, refer to the 'Namespace Parameter' section in the documentation",
+            "verbose": "For information on Namespaces of Windows Management Instrumentation, refer to the 'Namespace Parameter' section in the documentation.",
             "type": "investigate",
             "identifier": "get_users",
             "read_only": true,
@@ -1683,7 +1683,7 @@
         {
             "action": "run query",
             "description": "Run an arbitrary query using WQL on the system",
-            "verbose": "For information on Namespaces of Windows Management Instrumentation, refer to the 'Namespace Parameter' section in the documentation",
+            "verbose": "For information on Namespaces of Windows Management Instrumentation, refer to the 'Namespace Parameter' section in the documentation.",
             "type": "investigate",
             "identifier": "run_query",
             "read_only": true,
