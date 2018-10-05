@@ -1,4 +1,4 @@
 [submodule "wmi-client-wrapper-ntlmv2"]
 	path = wmi-client-wrapper-ntlmv2
-	url = ssh://git@prod-bb-1.phantom.local:7999/per/wmi-client-wrapper-ntlmv2.git
+	url = ssh://git@bitbucket.phantom.us:7999/per/wmi-client-wrapper-ntlmv2.git
 	ignore = dirty
