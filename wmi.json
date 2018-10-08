@@ -14,7 +14,7 @@
     "min_phantom_version": "3.5.210",
     "logo": "logo_microsoft_wmi.svg",
     "logo_dark": "logo_microsoft_wmi_dark.svg",
-    "license": "Copyright (c) 2017-2018 Splunk Inc.",
+    "license": "Copyright (c) 2014-2018 Splunk Inc.",
     "pip_dependencies": {
         "wheel": [
             {
