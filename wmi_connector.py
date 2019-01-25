@@ -1,14 +1,10 @@
 # --
 # File: wmi_connector.py
 #
-# Copyright (c) Phantom Cyber Corporation, 2014-2018
+# Copyright (c) 2016-2018 Splunk Inc.
 #
-# This unpublished material is proprietary to Phantom Cyber.
-# All rights reserved. The methods and
-# techniques described herein are considered trade secrets
-# and/or confidential. Reproduction or distribution, in whole
-# or in part, is forbidden except by express written permission
-# of Phantom Cyber.
+# SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
+# without a valid written license from Splunk Inc. is PROHIBITED.
 #
 # --
 
@@ -216,14 +212,19 @@ class WmiConnector(BaseConnector):
         action = self.get_action_identifier()
 
         curr_machine = param[phantom.APP_JSON_IP_HOSTNAME]
+        # default to same as default in WmiClientWrapper::__init__()
+        namespace = param.get('namespace', '//./root/cimv2')
 
         action_result = self.add_action_result(ActionResult(dict(param)))
         action_result.update_param({phantom.APP_JSON_IP_HOSTNAME: curr_machine})
         wmic = None
 
         self.save_progress(phantom.APP_PROG_CONNECTING_TO_ELLIPSES, curr_machine)
+
+        force_ntlm_v2 = config.get('force_ntlmv2', False)
+
         try:
-            wmic = wmi.WmiClientWrapper(username=user, password=passw, host=curr_machine)
+            wmic = wmi.WmiClientWrapper(username=user, password=passw, host=curr_machine, namespace=namespace, force_ntlm_v2=force_ntlm_v2)
         except Exception as e:
             self.save_progress(WMI_MSG_CONNECTION_FAILED, machine=curr_machine)
             action_result.set_status(phantom.APP_ERROR, WMI_MSG_CONNECTION_FAILED, machine=curr_machine)
