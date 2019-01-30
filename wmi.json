@@ -1,5 +1,5 @@
 {
-    "appid": "46615E8C-69DD-4B8F-94D1-290EFA867143",
+    "appid": "46615e8c-69dd-4b8f-94d1-290efa867143",
     "name": "WMI",
     "description": "This App uses the WMI WQL to implement investigative actions that are executed on a Windows endpoint",
     "publisher": "Phantom",
