@@ -1,5 +1,5 @@
 # File: wmi_connector.py
-# Copyright (c) 2016-2019 Splunk Inc.
+# Copyright (c) 2016-2021 Splunk Inc.
 #
 # SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
 # without a valid written license from Splunk Inc. is PROHIBITED.
@@ -265,6 +265,6 @@ if __name__ == '__main__':
         connector.print_progress_message = True
         result = connector._handle_action(json.dumps(in_json), None)
 
-        print result
+        print(result)
 
     exit(0)
