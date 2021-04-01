@@ -53,11 +53,11 @@ class WmiConnector(BaseConnector):
         # print "In _run_query::Query Returned"
         self.debug_print("query_results", ret_data)
 
-        if (not ret_data):
+        if not ret_data:
             action_result.set_status(phantom.APP_ERROR, "Data retrieved was empty")
             return None
 
-        if (type(ret_data) != list):
+        if type(ret_data) != list:
             action_result.set_status(phantom.APP_ERROR, "Invalid Data recieved")
             return None
 
@@ -75,7 +75,7 @@ class WmiConnector(BaseConnector):
 
         # print ret_data
 
-        if (phantom.is_fail(action_result.get_status())):
+        if phantom.is_fail(action_result.get_status()):
             return action_result.get_status()
 
         cumulative_data[WMI_JSON_SYSTEM_DETAILS] = ret_data[0]
@@ -83,7 +83,7 @@ class WmiConnector(BaseConnector):
         query = "select * from Win32_OperatingSystem"
         ret_data = self._run_query(query, wmic, action_result)
 
-        if (phantom.is_fail(action_result.get_status())):
+        if phantom.is_fail(action_result.get_status()):
             return action_result.get_status()
 
         cumulative_data[WMI_JSON_OS_DETAILS] = ret_data[0]
@@ -91,7 +91,7 @@ class WmiConnector(BaseConnector):
         query = "select * from Win32_BootConfiguration"
         ret_data = self._run_query(query, wmic, action_result)
 
-        if (phantom.is_fail(action_result.get_status())):
+        if phantom.is_fail(action_result.get_status()):
             return action_result.get_status()
 
         cumulative_data[WMI_JSON_BOOT_CONFIG_DETAILS] = ret_data[0]
@@ -144,7 +144,7 @@ class WmiConnector(BaseConnector):
 
         ret_data = self._run_query(query, wmic, action_result)
 
-        if (phantom.is_success(action_result.get_status()) and len(ret_data)):
+        if phantom.is_success(action_result.get_status()) and len(ret_data):
             action_result.update_summary({WMI_JSON_TOTAL_PROCESSES: len(ret_data)})
             for curr_process in ret_data:
                 action_result.add_data(curr_process)
@@ -155,17 +155,17 @@ class WmiConnector(BaseConnector):
 
         query = "select * from Win32_Service"
 
-        if (action == self.ACTION_ID_GET_RUNNING_SERVICES):
+        if action == self.ACTION_ID_GET_RUNNING_SERVICES:
             query = "select * from Win32_Service where State = 'Running'"
 
         ret_data = self._run_query(query, wmic, action_result)
 
-        if (phantom.is_success(action_result.get_status()) and len(ret_data)):
+        if phantom.is_success(action_result.get_status()) and len(ret_data):
             action_result.update_summary({WMI_JSON_TOTAL_SERVICES: len(ret_data)})
             total_running = 0
             for curr_service in ret_data:
                 action_result.add_data(curr_service)
-                if (curr_service.get('State', 'Unknown') == 'Running'):
+                if curr_service.get('State', 'Unknown') == 'Running':
                     total_running += 1
             action_result.update_summary({WMI_JSON_RUNNING_SERVICES: total_running})
         else:
@@ -179,13 +179,13 @@ class WmiConnector(BaseConnector):
 
         ret_data = self._run_query(query, wmic, action_result)
 
-        if (phantom.is_success(action_result.get_status()) and len(ret_data)):
+        if phantom.is_success(action_result.get_status()) and len(ret_data):
             action_result.update_summary({WMI_JSON_TOTAL_USERS: len(ret_data)})
             total_disabled = 0
             for curr_user in ret_data:
                 # print "Service: \n %s" % curr_user
                 action_result.add_data(curr_user)
-                if (curr_user['Disabled']):
+                if curr_user['Disabled']:
                     total_disabled += 1
             action_result.update_summary({WMI_JSON_DISABLED_USERS: total_disabled})
 
@@ -229,19 +229,19 @@ class WmiConnector(BaseConnector):
             action_result.append_to_message(self._modify_exception_message(e))
             return action_result.get_status()
 
-        if (action == self.ACTION_ID_GET_PROCESSES):
+        if action == self.ACTION_ID_GET_PROCESSES:
             self._get_processes(wmic, action_result)
-        elif (action == self.ACTION_ID_GET_SERVICES) or (action == self.ACTION_ID_GET_RUNNING_SERVICES):
+        elif action == self.ACTION_ID_GET_SERVICES or action == self.ACTION_ID_GET_RUNNING_SERVICES:
             self._get_services(wmic, action, action_result)
-        elif (action == self.ACTION_ID_GET_USERS):
+        elif action == self.ACTION_ID_GET_USERS:
             self._get_users(wmic, action_result)
-        elif (action == self.ACTION_ID_GET_SYSINFO):
+        elif action == self.ACTION_ID_GET_SYSINFO:
             self._get_sysinfo(wmic, action_result)
-        elif (action == self.ACTION_ID_RUN_QUERY):
+        elif action == self.ACTION_ID_RUN_QUERY:
             query = param[WMI_JSON_QUERY]
             action_result.update_param({WMI_JSON_QUERY: query})
             query_results = self._run_query(query, wmic, action_result)
-            if (phantom.is_success(action_result.get_status())):
+            if phantom.is_success(action_result.get_status()):
                 action_result.set_status(phantom.APP_SUCCESS, WMI_SUCC_QUERY_EXECUTED)
                 action_result.add_data(query_results)
 
