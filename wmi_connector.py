@@ -73,8 +73,6 @@ class WmiConnector(BaseConnector):
         query = "select * from Win32_ComputerSystem"
         ret_data = self._run_query(query, wmic, action_result)
 
-        # print ret_data
-
         if phantom.is_fail(action_result.get_status()):
             return action_result.get_status()
 
@@ -191,6 +189,23 @@ class WmiConnector(BaseConnector):
 
         return action_result.get_status()
 
+    def _test_connectivity(self, wmic, action_result):
+
+        self.save_progress("Connecting to server")
+
+        query = "select * from Win32_ComputerSystem"
+
+        self.save_progress("Fetching System Details")
+
+        _ = self._run_query(query, wmic, action_result)
+
+        if phantom.is_fail(action_result.get_status()):
+            self.save_progress("Test Connectivity Failed")
+            return action_result.get_status()
+
+        self.save_progress("Test Connectivity Passed")
+        return action_result.set_status(phantom.APP_SUCCESS)
+
     def handle_action(self, param):
         """Function that handles all the actions
 
@@ -209,7 +224,11 @@ class WmiConnector(BaseConnector):
         # Get the action
         action = self.get_action_identifier()
 
-        curr_machine = param[phantom.APP_JSON_IP_HOSTNAME]
+        curr_machine = config[phantom.APP_JSON_SERVER]
+
+        if action != phantom.ACTION_ID_TEST_ASSET_CONNECTIVITY:
+            curr_machine = param[phantom.APP_JSON_IP_HOSTNAME]
+
         # default to same as default in WmiClientWrapper::__init__()
         namespace = param.get('namespace', '//./root/cimv2')
 
@@ -244,6 +263,8 @@ class WmiConnector(BaseConnector):
             if phantom.is_success(action_result.get_status()):
                 action_result.set_status(phantom.APP_SUCCESS, WMI_SUCC_QUERY_EXECUTED)
                 action_result.add_data(query_results)
+        elif action == phantom.ACTION_ID_TEST_ASSET_CONNECTIVITY:
+            self._test_connectivity(wmic, action_result)
 
         return phantom.APP_SUCCESS
 

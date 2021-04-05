@@ -2,7 +2,7 @@
     "appid": "46615E8C-69DD-4B8F-94D1-290EFA867143",
     "name": "WMI",
     "description": "This App uses the WMI WQL to implement investigative actions that are executed on a Windows endpoint",
-    "publisher": "Phantom",
+    "publisher": "Splunk",
     "type": "endpoint",
     "main_module": "wmi_connector.py",
     "python_version": "3",
@@ -16,6 +16,9 @@
     "logo": "logo_microsoft_wmi.svg",
     "logo_dark": "logo_microsoft_wmi_dark.svg",
     "license": "Copyright (c) 2016-2021 Splunk Inc.",
+    "latest_tested_versions": [
+        "On-Prem on 1st April, 2021"
+    ],
     "pip_dependencies": {
         "wheel": [
             {
@@ -58,11 +61,20 @@
         "force_ntlmv2": {
             "data_type": "boolean",
             "order": 4,
-            "description": "Add option to force NTLMv2 (Used only for WMI)",
-            "required": false
+            "description": "Add option to force NTLMv2 (Used only for WMI)"
         }
     },
     "actions": [
+        {
+            "action": "test connectivity",
+            "identifier": "test_asset_connectivity",
+            "description": "Validate the asset configuration for connectivity",
+            "type": "test",
+            "read_only": true,
+            "parameters": {},
+            "output": [],
+            "versions": "EQ(*)"
+        },
         {
             "action": "list services",
             "description": "Get the list of installed services on the system",
@@ -102,7 +114,8 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "example_values": [
-                        "success"
+                        "success",
+                        "failed"
                     ]
                 },
                 {
@@ -208,8 +221,7 @@
                 },
                 {
                     "data_path": "action_result.data.*.InstallDate",
-                    "data_type": "string",
-                    "example_values": []
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.Name",
@@ -420,7 +432,8 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "example_values": [
-                        "success"
+                        "success",
+                        "failed"
                     ]
                 },
                 {
@@ -808,10 +821,7 @@
                 },
                 {
                     "data_path": "action_result.data.*.os_details.Organization",
-                    "data_type": "string",
-                    "example_values": [
-                        ""
-                    ]
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.os_details.OtherTypeDescription",
@@ -1418,8 +1428,7 @@
                 },
                 {
                     "data_path": "action_result.summary.workgroup",
-                    "data_type": "string",
-                    "example_values": []
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -1485,7 +1494,8 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "example_values": [
-                        "success"
+                        "success",
+                        "failed"
                     ]
                 },
                 {
@@ -1709,6 +1719,7 @@
                         "ip",
                         "host name"
                     ],
+                    "primary": true,
                     "required": true
                 },
                 "query": {
@@ -1734,7 +1745,8 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "example_values": [
-                        "success"
+                        "success",
+                        "failed"
                     ]
                 },
                 {
@@ -1803,7 +1815,6 @@
                 {
                     "data_path": "action_result.data.*.*.CommandLine",
                     "data_type": "string",
-                    "example_values": [],
                     "contains": [
                         "file name",
                         "file path"
@@ -1861,7 +1872,6 @@
                     "data_type": "string",
                     "column_name": "Executable Path",
                     "column_order": "7",
-                    "example_values": [],
                     "contains": [
                         "file path",
                         "file name"
@@ -1906,8 +1916,7 @@
                 },
                 {
                     "data_path": "action_result.data.*.*.InstallDate",
-                    "data_type": "string",
-                    "example_values": []
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.*.KernelModeTime",
@@ -2009,7 +2018,7 @@
                     "contains": [
                         "pid"
                     ],
-                    "column_name": "Parent Process Id",
+                    "column_name": "Parent Process ID",
                     "column_order": "10",
                     "example_values": [
                         "0"
@@ -2087,7 +2096,7 @@
                     "contains": [
                         "pid"
                     ],
-                    "column_name": "Process Id",
+                    "column_name": "Process ID",
                     "column_order": "0",
                     "example_values": [
                         "0"
@@ -2152,7 +2161,7 @@
                 {
                     "data_path": "action_result.data.*.*.SessionId",
                     "data_type": "string",
-                    "column_name": "Session Id",
+                    "column_name": "Session ID",
                     "column_order": "1",
                     "example_values": [
                         "0"
@@ -2171,8 +2180,7 @@
                     "data_path": "action_result.data.*.*.TerminationDate",
                     "data_type": "string",
                     "column_name": "Termination Date",
-                    "column_order": "12",
-                    "example_values": []
+                    "column_order": "12"
                 },
                 {
                     "data_path": "action_result.data.*.*.ThreadCount",
