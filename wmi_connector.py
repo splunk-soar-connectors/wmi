@@ -57,7 +57,7 @@ class WmiConnector(BaseConnector):
             action_result.set_status(phantom.APP_ERROR, "Data retrieved was empty")
             return None
 
-        if type(ret_data) != list:
+        if not isinstance(ret_data, list):
             action_result.set_status(phantom.APP_ERROR, "Invalid Data recieved")
             return None
 
