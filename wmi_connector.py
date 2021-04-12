@@ -21,6 +21,7 @@ import wmi_client_wrapper as wmi
 class WmiConnector(BaseConnector):
 
     # Actions supported by this script
+    ACTION_ID_TEST_CONNECTIVITY = "test_connectivity"
     ACTION_ID_GET_PROCESSES = "get_processes"
     ACTION_ID_GET_SERVICES = "get_services"
     ACTION_ID_GET_RUNNING_SERVICES = "get_running_services"
