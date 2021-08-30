@@ -10,7 +10,7 @@
     "utctime_updated": "2021-08-24T05:17:07.000000Z",
     "package_name": "phantom_wmi",
     "product_vendor": "Microsoft",
-    "product_name": "Windows Management Instrumentation",
+    "product_name": "Windows Server",
     "product_version_regex": ".*",
     "min_phantom_version": "4.9.39220",
     "logo": "logo_microsoft_wmi.svg",
