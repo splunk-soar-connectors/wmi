@@ -33,9 +33,41 @@ class WmiConnector(BaseConnector):
         # Call the BaseConnectors init first
         super(WmiConnector, self).__init__()
 
+    def _get_error_message_from_exception(self, e):
+        """
+        This method is used to get appropriate error messages from the exception.
+
+        :param e: Exception object
+        :return: Error message
+        """
+
+        error_code = WMI_ERR_CODE_MSG
+        error_msg = WMI_ERR_MSG_UNAVAILABLE
+        try:
+            if e.args:
+                if len(e.args) > 1:
+                    error_code = e.args[0]
+                    error_msg = e.args[1]
+                elif len(e.args) == 1:
+                    error_code = WMI_ERR_CODE_MSG
+                    error_msg = e.args[0]
+        except:
+            pass
+
+        try:
+            if error_code in WMI_ERR_CODE_MSG:
+                error_text = "Error Message: {0}".format(error_msg)
+            else:
+                error_text = "Error Code: {0}. Error Message: {1}".format(error_code, error_msg)
+        except:
+            self.debug_print("Error occurred while parsing error message")
+            error_text = WMI_PARSE_ERR_MSG
+
+        return error_text
+
     def _modify_exception_message(self, e):
 
-        mod_msg = re.sub('%.* ', '%<password> ', str(e))
+        mod_msg = re.sub('%.* ', '%<password> ', self._get_error_message_from_exception(e))
 
         self.debug_print("Modified Exception Message:", mod_msg)
 
@@ -58,7 +90,7 @@ class WmiConnector(BaseConnector):
             return None
 
         if not isinstance(ret_data, list):
-            action_result.set_status(phantom.APP_ERROR, "Invalid Data recieved")
+            action_result.set_status(phantom.APP_ERROR, "Invalid Data received")
             return None
 
         action_result.set_status(phantom.APP_SUCCESS)
@@ -183,7 +215,7 @@ class WmiConnector(BaseConnector):
             for curr_user in ret_data:
                 # print "Service: \n %s" % curr_user
                 action_result.add_data(curr_user)
-                if curr_user['Disabled']:
+                if curr_user.get('Disabled'):
                     total_disabled += 1
             action_result.update_summary({WMI_JSON_DISABLED_USERS: total_disabled})
 
@@ -207,12 +239,11 @@ class WmiConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def handle_action(self, param):
-        """Function that handles all the actions
+        """
+        Function that handles all the actions.
 
-            Args:
-
-            Return:
-                A status code
+        :param param: A dictionary which contains information about the actions to be executed
+        :return: Status success/failure
         """
 
         # First get the config
@@ -249,22 +280,23 @@ class WmiConnector(BaseConnector):
             return action_result.get_status()
 
         if action == self.ACTION_ID_GET_PROCESSES:
-            self._get_processes(wmic, action_result)
+            return self._get_processes(wmic, action_result)
         elif action == self.ACTION_ID_GET_SERVICES or action == self.ACTION_ID_GET_RUNNING_SERVICES:
-            self._get_services(wmic, action, action_result)
+            return self._get_services(wmic, action, action_result)
         elif action == self.ACTION_ID_GET_USERS:
-            self._get_users(wmic, action_result)
+            return self._get_users(wmic, action_result)
         elif action == self.ACTION_ID_GET_SYSINFO:
-            self._get_sysinfo(wmic, action_result)
+            return self._get_sysinfo(wmic, action_result)
         elif action == self.ACTION_ID_RUN_QUERY:
             query = param[WMI_JSON_QUERY]
             action_result.update_param({WMI_JSON_QUERY: query})
             query_results = self._run_query(query, wmic, action_result)
             if phantom.is_success(action_result.get_status()):
-                action_result.set_status(phantom.APP_SUCCESS, WMI_SUCC_QUERY_EXECUTED)
                 action_result.add_data(query_results)
+                return action_result.set_status(phantom.APP_SUCCESS, WMI_SUCC_QUERY_EXECUTED)
+            return action_result.get_status()
         elif action == phantom.ACTION_ID_TEST_ASSET_CONNECTIVITY:
-            self._test_connectivity(wmic, action_result)
+            return self._test_connectivity(wmic, action_result)
 
         return phantom.APP_SUCCESS
 

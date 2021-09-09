@@ -6,8 +6,8 @@
     "type": "endpoint",
     "main_module": "wmi_connector.py",
     "python_version": "3",
-    "app_version": "2.0.2",
-    "utctime_updated": "2021-04-15T20:37:49.000000Z",
+    "app_version": "2.1.3",
+    "utctime_updated": "2021-09-06T15:26:02.000000Z",
     "package_name": "phantom_wmi",
     "product_vendor": "Microsoft",
     "product_name": "Windows Server",
@@ -17,7 +17,7 @@
     "logo_dark": "logo_microsoft_wmi_dark.svg",
     "license": "Copyright (c) 2016-2021 Splunk Inc.",
     "latest_tested_versions": [
-        "On-Prem on 1st April, 2021"
+        "On-Prem on 20th August, 2021"
     ],
     "pip_dependencies": {
         "wheel": [
@@ -153,7 +153,7 @@
                     "data_path": "action_result.data.*.Caption",
                     "data_type": "string",
                     "column_name": "Caption",
-                    "column_order": 4,
+                    "column_order": 3,
                     "example_values": [
                         "Active Directory Web Services"
                     ]
@@ -176,7 +176,7 @@
                     "data_path": "action_result.data.*.Description",
                     "data_type": "string",
                     "column_name": "Description",
-                    "column_order": 13,
+                    "column_order": 11,
                     "example_values": [
                         "This service provides a Web Service interface to instances of the directory service (AD DS and AD LDS) that are running locally on this server. If this service is stopped or disabled, client applications, such as Active Directory PowerShell, will not be able to access or manage any directory service instances that are running locally on this server."
                     ]
@@ -227,7 +227,7 @@
                     "data_path": "action_result.data.*.Name",
                     "data_type": "string",
                     "column_name": "Name",
-                    "column_order": 7,
+                    "column_order": 6,
                     "example_values": [
                         "ADWS"
                     ]
@@ -240,7 +240,7 @@
                         "file name"
                     ],
                     "column_name": "Path Name",
-                    "column_order": 8,
+                    "column_order": 7,
                     "example_values": [
                         "C:\\Windows\\ADWS\\Microsoft.ActiveDirectory.WebServices.exe"
                     ]
@@ -252,7 +252,7 @@
                         "pid"
                     ],
                     "column_name": "Pid",
-                    "column_order": 9,
+                    "column_order": 8,
                     "example_values": [
                         "1328"
                     ]
@@ -268,7 +268,7 @@
                     "data_path": "action_result.data.*.ServiceType",
                     "data_type": "string",
                     "column_name": "Service Type",
-                    "column_order": 10,
+                    "column_order": 9,
                     "example_values": [
                         "Own Process"
                     ]
@@ -277,7 +277,7 @@
                     "data_path": "action_result.data.*.StartMode",
                     "data_type": "string",
                     "column_name": "Start Mode",
-                    "column_order": 5,
+                    "column_order": 4,
                     "example_values": [
                         "Auto"
                     ]
@@ -286,7 +286,7 @@
                     "data_path": "action_result.data.*.StartName",
                     "data_type": "string",
                     "column_name": "Start Name",
-                    "column_order": 6,
+                    "column_order": 5,
                     "example_values": [
                         "LocalSystem"
                     ]
@@ -314,7 +314,7 @@
                     "data_path": "action_result.data.*.Status",
                     "data_type": "string",
                     "column_name": "Status",
-                    "column_order": 11,
+                    "column_order": 10,
                     "example_values": [
                         "OK"
                     ]
@@ -1506,7 +1506,7 @@
                         "host name"
                     ],
                     "column_name": "System",
-                    "column_order": "12",
+                    "column_order": 11,
                     "example_values": [
                         "10.1.17.42"
                     ]
@@ -1522,7 +1522,7 @@
                     "data_path": "action_result.data.*.AccountType",
                     "data_type": "string",
                     "column_name": "Account Type",
-                    "column_order": "2",
+                    "column_order": 2,
                     "example_values": [
                         "512"
                     ]
@@ -1534,7 +1534,7 @@
                         "user name"
                     ],
                     "column_name": "User Name",
-                    "column_order": "0",
+                    "column_order": 0,
                     "example_values": [
                         "CORP\\Administrator"
                     ]
@@ -1543,7 +1543,7 @@
                     "data_path": "action_result.data.*.Description",
                     "data_type": "string",
                     "column_name": "Description",
-                    "column_order": "3",
+                    "column_order": 3,
                     "example_values": [
                         "Built-in account for administering the computer/domain"
                     ]
@@ -1552,7 +1552,7 @@
                     "data_path": "action_result.data.*.Disabled",
                     "data_type": "boolean",
                     "column_name": "Disabled",
-                    "column_order": "1",
+                    "column_order": 1,
                     "example_values": [
                         false,
                         true
@@ -1583,7 +1583,7 @@
                     "data_path": "action_result.data.*.LocalAccount",
                     "data_type": "boolean",
                     "column_name": "Local Account",
-                    "column_order": "5",
+                    "column_order": 4,
                     "example_values": [
                         false,
                         true
@@ -1601,7 +1601,7 @@
                     "data_path": "action_result.data.*.Name",
                     "data_type": "string",
                     "column_name": "Name",
-                    "column_order": "6",
+                    "column_order": 5,
                     "example_values": [
                         "Administrator"
                     ]
@@ -1610,7 +1610,7 @@
                     "data_path": "action_result.data.*.PasswordChangeable",
                     "data_type": "boolean",
                     "column_name": "Password Changeable",
-                    "column_order": "7",
+                    "column_order": 6,
                     "example_values": [
                         false,
                         true
@@ -1628,7 +1628,7 @@
                     "data_path": "action_result.data.*.PasswordRequired",
                     "data_type": "boolean",
                     "column_name": "Password Required",
-                    "column_order": "8",
+                    "column_order": 7,
                     "example_values": [
                         false,
                         true
@@ -1638,7 +1638,7 @@
                     "data_path": "action_result.data.*.SID",
                     "data_type": "string",
                     "column_name": "SID",
-                    "column_order": "9",
+                    "column_order": 8,
                     "example_values": [
                         "S-1-5-21-3790544232-372029393-2474287633-500"
                     ]
@@ -1647,7 +1647,7 @@
                     "data_path": "action_result.data.*.SIDType",
                     "data_type": "string",
                     "column_name": "SID Type",
-                    "column_order": "10",
+                    "column_order": 9,
                     "example_values": [
                         "1"
                     ]
@@ -1656,7 +1656,7 @@
                     "data_path": "action_result.data.*.Status",
                     "data_type": "string",
                     "column_name": "Status",
-                    "column_order": "11",
+                    "column_order": 10,
                     "example_values": [
                         "OK"
                     ]
@@ -1757,7 +1757,7 @@
                         "host name"
                     ],
                     "column_name": "System",
-                    "column_order": "3",
+                    "column_order": 3,
                     "example_values": [
                         "10.1.17.42"
                     ]
@@ -1796,7 +1796,7 @@
                     "data_path": "action_result.data.*.*.CSName",
                     "data_type": "string",
                     "column_name": "CSName",
-                    "column_order": "4",
+                    "column_order": 4,
                     "example_values": [
                         "DC1"
                     ]
@@ -1831,7 +1831,7 @@
                     "data_path": "action_result.data.*.*.CreationDate",
                     "data_type": "string",
                     "column_name": "Creation Date",
-                    "column_order": "5",
+                    "column_order": 5,
                     "example_values": [
                         "20180913031853.895628-420"
                     ]
@@ -1840,7 +1840,7 @@
                     "data_path": "action_result.data.*.*.Description",
                     "data_type": "string",
                     "column_name": "Description",
-                    "column_order": "6",
+                    "column_order": 6,
                     "example_values": [
                         "System Idle Process",
                         "Built-in account for administering the computer/domain"
@@ -1871,7 +1871,7 @@
                     "data_path": "action_result.data.*.*.ExecutablePath",
                     "data_type": "string",
                     "column_name": "Executable Path",
-                    "column_order": "7",
+                    "column_order": 7,
                     "contains": [
                         "file path",
                         "file name"
@@ -1881,7 +1881,7 @@
                     "data_path": "action_result.data.*.*.ExecutionState",
                     "data_type": "string",
                     "column_name": "Execution State",
-                    "column_order": "8",
+                    "column_order": 8,
                     "example_values": [
                         "0"
                     ]
@@ -1959,7 +1959,7 @@
                     "data_path": "action_result.data.*.*.Name",
                     "data_type": "string",
                     "column_name": "Name",
-                    "column_order": "2",
+                    "column_order": 2,
                     "example_values": [
                         "System Idle Process",
                         "Administrator"
@@ -1979,7 +1979,7 @@
                     "data_path": "action_result.data.*.*.OSName",
                     "data_type": "string",
                     "column_name": "OS Name",
-                    "column_order": "9",
+                    "column_order": 9,
                     "example_values": [
                         "Microsoft Windows Server 2008 R2 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2"
                     ]
@@ -2019,7 +2019,7 @@
                         "pid"
                     ],
                     "column_name": "Parent Process ID",
-                    "column_order": "10",
+                    "column_order": 10,
                     "example_values": [
                         "0"
                     ]
@@ -2097,7 +2097,7 @@
                         "pid"
                     ],
                     "column_name": "Process ID",
-                    "column_order": "0",
+                    "column_order": 0,
                     "example_values": [
                         "0"
                     ]
@@ -2162,7 +2162,7 @@
                     "data_path": "action_result.data.*.*.SessionId",
                     "data_type": "string",
                     "column_name": "Session ID",
-                    "column_order": "1",
+                    "column_order": 1,
                     "example_values": [
                         "0"
                     ]
@@ -2171,7 +2171,7 @@
                     "data_path": "action_result.data.*.*.Status",
                     "data_type": "string",
                     "column_name": "Status",
-                    "column_order": "11",
+                    "column_order": 11,
                     "example_values": [
                         "OK"
                     ]
@@ -2180,7 +2180,7 @@
                     "data_path": "action_result.data.*.*.TerminationDate",
                     "data_type": "string",
                     "column_name": "Termination Date",
-                    "column_order": "12"
+                    "column_order": 12
                 },
                 {
                     "data_path": "action_result.data.*.*.ThreadCount",
@@ -2207,7 +2207,7 @@
                     "data_path": "action_result.data.*.*.WindowsVersion",
                     "data_type": "string",
                     "column_name": "Windows Version",
-                    "column_order": "13",
+                    "column_order": 13,
                     "example_values": [
                         "6.1.7601"
                     ]
