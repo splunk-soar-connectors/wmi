@@ -1,2 +1,2 @@
-wmi-client-wrapper==0.0.12
 wmi-client-wrapper-py3==2018.3
+wmi-client-wrapper==0.0.12

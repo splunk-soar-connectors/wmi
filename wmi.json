@@ -22,16 +22,68 @@
     "pip_dependencies": {
         "wheel": [
             {
-                "module": "wmi-client-wrapper",
-                "input_file": "wmi-client-wrapper-ntlmv2/wmi_client_wrapper-0.0.12-py2-none-any.whl"
+                "module": "funcsigs",
+                "input_file": "wheels/shared/funcsigs-1.0.2-py2.py3-none-any.whl"
+            },
+            {
+                "module": "future",
+                "input_file": "wheels/py2/future-0.16.0-py2-none-any.whl"
+            },
+            {
+                "module": "mock",
+                "input_file": "wheels/shared/mock-2.0.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "pbr",
+                "input_file": "wheels/shared/pbr-5.8.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "sh",
+                "input_file": "wheels/shared/sh-1.12.14-py2.py3-none-any.whl"
+            },
+            {
+                "module": "six",
+                "input_file": "wheels/shared/six-1.16.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "wmi_client_wrapper",
+                "input_file": "wheels/py2/wmi_client_wrapper-0.0.12-py2-none-any.whl"
+            },
+            {
+                "module": "wmi_client_wrapper_py3",
+                "input_file": "wheels/py2/wmi_client_wrapper_py3-2018.3-py2-none-any.whl"
             }
         ]
     },
     "pip3_dependencies": {
         "wheel": [
             {
-                "module": "wmi-client-wrapper",
-                "input_file": "wmi-client-wrapper-ntlmv2/wmi_client_wrapper_py3-2018.3-py3-none-any.whl"
+                "module": "future",
+                "input_file": "wheels/py3/future-0.16.0-py3-none-any.whl"
+            },
+            {
+                "module": "mock",
+                "input_file": "wheels/shared/mock-2.0.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "pbr",
+                "input_file": "wheels/shared/pbr-5.8.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "sh",
+                "input_file": "wheels/shared/sh-1.12.14-py2.py3-none-any.whl"
+            },
+            {
+                "module": "six",
+                "input_file": "wheels/shared/six-1.16.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "wmi_client_wrapper",
+                "input_file": "wheels/py3/wmi_client_wrapper-0.0.12-py3-none-any.whl"
+            },
+            {
+                "module": "wmi_client_wrapper_py3",
+                "input_file": "wheels/py3/wmi_client_wrapper_py3-2018.3-py3-none-any.whl"
             }
         ]
     },
