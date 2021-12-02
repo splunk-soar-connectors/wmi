@@ -1,4 +1,0 @@
-[submodule "wmi-client-wrapper-ntlmv2"]
-	path = wmi-client-wrapper-ntlmv2
-	url = git@cd.splunkdev.com:phantom-external/wmi-client-wrapper-ntlmv2.git
-	ignore = dirty
