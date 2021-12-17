@@ -14,16 +14,14 @@
 # and limitations under the License.
 #
 #
-# Phantom imports
-import phantom.app as phantom
-from phantom.base_connector import BaseConnector
-from phantom.action_result import ActionResult
-
-# THIS Connector imports
-from wmi_consts import *
-
 import re
+
+import phantom.app as phantom
+from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
+
 import wmi_client_wrapper as wmi
+from wmi_consts import *
 
 
 class WmiConnector(BaseConnector):
@@ -311,9 +309,10 @@ class WmiConnector(BaseConnector):
 
 if __name__ == '__main__':
 
-    import sys
-    import pudb
     import json
+    import sys
+
+    import pudb
 
     pudb.set_trace()
 
