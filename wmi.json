@@ -16,7 +16,7 @@
     "fips_compliant": true,
     "logo": "logo_microsoft_wmi.svg",
     "logo_dark": "logo_microsoft_wmi_dark.svg",
-    "license": "Copyright (c) 2016-2021 Splunk Inc.",
+    "license": "Copyright (c) 2016-2022 Splunk Inc.",
     "latest_tested_versions": [
         "On-Prem on 20th August, 2021"
     ],
