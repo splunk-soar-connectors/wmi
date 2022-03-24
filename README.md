@@ -6,7 +6,7 @@ Connector Version: 2\.1\.7
 Product Vendor: Microsoft  
 Product Name: Windows Server  
 Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 4\.9\.39220  
+Minimum Product Version: 5\.1\.0  
 
 This App uses the WMI WQL to implement investigative actions that are executed on a Windows endpoint
 
