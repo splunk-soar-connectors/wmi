@@ -81,6 +81,8 @@ class WmiConnector(BaseConnector):
 
     def _run_query(self, query, wmic, action_result):
 
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+
         try:
             ret_data = wmic.query(query)
         except Exception as e:
@@ -189,12 +191,15 @@ class WmiConnector(BaseConnector):
 
     def _get_services(self, wmic, action, action_result):
 
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+
         query = "select * from Win32_Service"
 
         if action == self.ACTION_ID_GET_RUNNING_SERVICES:
             query = "select * from Win32_Service where State = 'Running'"
 
         ret_data = self._run_query(query, wmic, action_result)
+        self.debug_print("query_results", ret_data)
 
         if phantom.is_success(action_result.get_status()) and len(ret_data):
             action_result.update_summary({WMI_JSON_TOTAL_SERVICES: len(ret_data)})
@@ -211,9 +216,12 @@ class WmiConnector(BaseConnector):
 
     def _get_users(self, wmic, action_result):
 
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+
         query = "select * from Win32_Account where SIDType = 1"
 
         ret_data = self._run_query(query, wmic, action_result)
+        self.debug_print("query_results", ret_data)
 
         if phantom.is_success(action_result.get_status()) and len(ret_data):
             action_result.update_summary({WMI_JSON_TOTAL_USERS: len(ret_data)})
@@ -327,4 +335,4 @@ if __name__ == '__main__':
 
         print(result)
 
-    exit(0)
+    sys.exit(0)
