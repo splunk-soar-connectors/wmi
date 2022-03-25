@@ -1,21 +1,27 @@
 # File: wmi_connector.py
-# Copyright (c) 2016-2021 Splunk Inc.
 #
-# SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
-# without a valid written license from Splunk Inc. is PROHIBITED.
+# Copyright (c) 2016-2022 Splunk Inc.
 #
-# --
-
-# Phantom imports
-import phantom.app as phantom
-from phantom.base_connector import BaseConnector
-from phantom.action_result import ActionResult
-
-# THIS Connector imports
-from wmi_consts import *
-
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under
+# the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific language governing permissions
+# and limitations under the License.
+#
+#
 import re
+
+import phantom.app as phantom
+from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
+
 import wmi_client_wrapper as wmi
+from wmi_consts import *
 
 
 class WmiConnector(BaseConnector):
@@ -74,6 +80,8 @@ class WmiConnector(BaseConnector):
         return mod_msg
 
     def _run_query(self, query, wmic, action_result):
+
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
 
         try:
             ret_data = wmic.query(query)
@@ -183,12 +191,15 @@ class WmiConnector(BaseConnector):
 
     def _get_services(self, wmic, action, action_result):
 
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+
         query = "select * from Win32_Service"
 
         if action == self.ACTION_ID_GET_RUNNING_SERVICES:
             query = "select * from Win32_Service where State = 'Running'"
 
         ret_data = self._run_query(query, wmic, action_result)
+        self.debug_print("query_results", ret_data)
 
         if phantom.is_success(action_result.get_status()) and len(ret_data):
             action_result.update_summary({WMI_JSON_TOTAL_SERVICES: len(ret_data)})
@@ -205,9 +216,12 @@ class WmiConnector(BaseConnector):
 
     def _get_users(self, wmic, action_result):
 
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+
         query = "select * from Win32_Account where SIDType = 1"
 
         ret_data = self._run_query(query, wmic, action_result)
+        self.debug_print("query_results", ret_data)
 
         if phantom.is_success(action_result.get_status()) and len(ret_data):
             action_result.update_summary({WMI_JSON_TOTAL_USERS: len(ret_data)})
@@ -303,9 +317,10 @@ class WmiConnector(BaseConnector):
 
 if __name__ == '__main__':
 
-    import sys
-    import pudb
     import json
+    import sys
+
+    import pudb
 
     pudb.set_trace()
 
@@ -320,4 +335,4 @@ if __name__ == '__main__':
 
         print(result)
 
-    exit(0)
+    sys.exit(0)

@@ -1,0 +1,14 @@
+Splunk SOAR WMI
+Copyright (c) 2016-2022 Splunk Inc.
+
+Third-party Software Attributions:
+
+Library: sh
+Version: 1.12.14
+License: MIT
+Copyright 2011-2012 by Andrew Moffat
+
+Library: wmi-client-wrapper-py3
+Version: 2018.3
+License: BSD
+Edward Beech

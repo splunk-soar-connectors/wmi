@@ -6,32 +6,25 @@
     "type": "endpoint",
     "main_module": "wmi_connector.py",
     "python_version": "3",
-    "app_version": "2.1.6",
-    "utctime_updated": "2021-10-15T18:03:12.000000Z",
+    "app_version": "2.1.7",
+    "utctime_updated": "2022-01-07T20:50:38.000000Z",
     "package_name": "phantom_wmi",
     "product_vendor": "Microsoft",
     "product_name": "Windows Server",
     "product_version_regex": ".*",
-    "min_phantom_version": "4.9.39220",
+    "min_phantom_version": "5.1.0",
+    "fips_compliant": true,
     "logo": "logo_microsoft_wmi.svg",
     "logo_dark": "logo_microsoft_wmi_dark.svg",
-    "license": "Copyright (c) 2016-2021 Splunk Inc.",
+    "license": "Copyright (c) 2016-2022 Splunk Inc.",
     "latest_tested_versions": [
         "On-Prem on 20th August, 2021"
     ],
     "pip_dependencies": {
         "wheel": [
             {
-                "module": "wmi-client-wrapper",
-                "input_file": "wmi-client-wrapper-ntlmv2/wmi_client_wrapper-0.0.12-py2-none-any.whl"
-            }
-        ]
-    },
-    "pip3_dependencies": {
-        "wheel": [
-            {
-                "module": "wmi-client-wrapper",
-                "input_file": "wmi-client-wrapper-ntlmv2/wmi_client_wrapper_py3-2018.3-py3-none-any.whl"
+                "module": "sh",
+                "input_file": "wheels/sh-1.12.14-py2.py3-none-any.whl"
             }
         ]
     },

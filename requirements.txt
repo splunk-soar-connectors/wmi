@@ -1,2 +1,1 @@
-wmi-client-wrapper==0.0.12
-wmi-client-wrapper-py3==2018.3
+sh==1.12.14
