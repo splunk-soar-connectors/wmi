@@ -22,6 +22,7 @@ from phantom.base_connector import BaseConnector
 
 import wmi_client_wrapper as wmi
 from wmi_consts import *
+from wmi_executer import WMIEXEC, load_smbclient_auth_file
 
 
 class WmiConnector(BaseConnector):
@@ -33,6 +34,7 @@ class WmiConnector(BaseConnector):
     ACTION_ID_GET_USERS = "get_users"
     ACTION_ID_RUN_QUERY = "run_query"
     ACTION_ID_GET_SYSINFO = "get_sysinfo"
+    ACTION_ID_EXECUTE_PROGRAM = "execute_program"
 
     def __init__(self):
 
@@ -235,6 +237,43 @@ class WmiConnector(BaseConnector):
 
         return action_result.get_status()
 
+    def _execute_program(self, param, username, password, ip_address):
+        commands = param['command'].split(',')
+        shell_type = param['shell_type']
+        share = param['share']
+        domain = param.get('domain', '')
+        authfile = param.get('authfile', None)
+        hashes = param.get('hashes', None)
+        aesKey = param.get('aesKey', None)
+        k = param['k']
+        nooutput = param['nooutput']
+        silentcommand = param['silentcommand']
+
+        self.save_progress("In action handler for: {0}".format(
+            self.get_action_identifier()))
+        action_result = self.add_action_result(ActionResult(dict(param)))
+
+        stdout_arr = []
+        try:
+            command = None
+            if authfile is not None:
+              (domain, username, password) = load_smbclient_auth_file(authfile) 
+
+            for command in commands:
+                executer = WMIEXEC(command.strip(), username, password, domain, hashes, aesKey, share,
+                                        nooutput, k, authfile, shell_type)
+                executer.run(ip_address, silentcommand)
+                stdout_arr.append(executer.shell._RemoteShell__outputBuffer)
+        except Exception as e:
+            import traceback
+            error_message = self._get_error_message_from_exception(e)
+            return action_result.set_status(phantom.APP_ERROR,
+                                            f'{"Error occurred while executing program, Error: "}{error_message} for command {command}')
+
+        summary = action_result.update_summary({})
+        summary['stdout'] = "\n----\n".join(stdout_arr)
+        return action_result.set_status(phantom.APP_SUCCESS, 'Program executed successfully')
+
     def _test_connectivity(self, wmic, action_result):
 
         self.save_progress("Connecting to server")
@@ -270,6 +309,9 @@ class WmiConnector(BaseConnector):
         action = self.get_action_identifier()
 
         curr_machine = config[phantom.APP_JSON_SERVER]
+
+        if action == self.ACTION_ID_EXECUTE_PROGRAM:
+            return self._execute_program(param, user, passw, curr_machine)
 
         if action != phantom.ACTION_ID_TEST_ASSET_CONNECTIVITY:
             curr_machine = param[phantom.APP_JSON_IP_HOSTNAME]

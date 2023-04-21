@@ -15,6 +15,8 @@
 #
 #
 # Json keys specific to wmi app's input parameters/config and the output result
+import time
+
 WMI_JSON_QUERY = "query"
 WMI_JSON_TOTAL_SERVICES = "total_services"
 WMI_JSON_RUNNING_SERVICES = "running_services"
@@ -47,3 +49,6 @@ CONN_PY_PROG_SENDING_QUERY = "Executing WMI query"
 WMI_ERR_CODE_MSG = "Error code unavailable"
 WMI_ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
 WMI_PARSE_ERR_MSG = "Unable to parse the error message. Please check the asset configuration and|or action parameters"
+
+OUTPUT_FILENAME = '__' + str(time.time())
+CODEC = 'utf-8'
