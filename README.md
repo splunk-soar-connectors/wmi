@@ -57,6 +57,7 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [get system info](#action-get-system-info) - Get information about a system  
 [list users](#action-list-users) - List users configured on a system  
 [run query](#action-run-query) - Run an arbitrary query using WQL on the system  
+[execute program](#action-execute-program) - Execute commands using WMI 
 
 ## action: 'test connectivity'
 Validate the asset configuration for connectivity
@@ -403,6 +404,46 @@ action\_result\.data\.\*\.\*\.WorkingSetSize | string |
 action\_result\.data\.\*\.\*\.WriteOperationCount | string | 
 action\_result\.data\.\*\.\*\.WriteTransferCount | string | 
 action\_result\.summary | string | 
+action\_result\.message | string | 
+summary\.total\_objects | numeric | 
+summary\.total\_objects\_successful | numeric | 
+
+## action: 'execute program'
+Execute commands using WMI
+
+Type: **generic**  
+Read only: **True**
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**command** |  required  | command to execute at the target, seperated by comma if more than one is required | string | 
+**shell\_type** |  required  | Choose a command processor for the semi-interactive shell | string | `cmd` `powershell`
+**share** |  required  | Share where the output will be grabbed from \(default ADMIN$\) | string | 
+**domain** |  optional  | Domain of server with which we want to connect | string | 
+**authfile** |  optional  | smbclient/mount.cifs-style authentication file. See smbclient man page's -A option. | string | 
+**hashes** |  optional  | NTLM hashes, format is LMHASH:NTHASH | string | 
+**aesKey** |  optional  | AES key to use for Kerberos Authentication (128 or 256 bits) | string | 
+**k** |  optional  | Use Kerberos authentication. Grabs credentials from ccache file \(KRB5CCNAME\) based on target parameters. If valid credentials cannot be found, it will use the ones specified in the command line | boolean | 
+**nooutput** |  optional  | Whether or not to print the output \(no SMB connection created\) | boolean | 
+**silentcommand** |  optional  | Does not execute cmd.exe to run given command \(no output\) | boolean | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS
+--------- | ---- | --------
+action\_result\.status | string | 
+action\_result\.parameter\.command | string | 
+action\_result\.parameter\.shell\_type | string | `cmd` `powershell`
+action\_result\.parameter\.share | string | 
+action\_result\.parameter\.domain | string | 
+action\_result\.parameter\.authfile | string | 
+action\_result\.parameter\.hashes | string | 
+action\_result\.parameter\.aesKey | string | 
+action\_result\.parameter\.k | boolean | 
+action\_result\.parameter\.nooutput | boolean | 
+action\_result\.parameter\.silentcommand | boolean | 
+action\_result\.data\.\*\.\*\ | string | 
+action\_result\.summary.stdout | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
 summary\.total\_objects\_successful | numeric | 

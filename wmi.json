@@ -2266,13 +2266,13 @@
             "read_only": false,
             "parameters": {
                 "command": {
-                    "description": "command to execute at the target, seperated by comma if more than one is required",
+                    "description": "Command to execute at the target, seperated by comma if more than one is required",
                     "data_type": "string",
                     "required": true,
                     "order": 0
                 },
                 "shell_type": {
-                    "description": "choose a command processor for the semi-interactive shell",
+                    "description": "Choose a command processor for the semi-interactive shell",
                     "data_type": "string",
                     "value_list": ["cmd", "powershell"],
                     "default": "cmd",
@@ -2280,7 +2280,7 @@
                     "order": 1
                 },
                 "share": {
-                    "description": "share where the output will be grabbed from (default ADMIN$)",
+                    "description": "Share where the output will be grabbed from (default ADMIN$)",
                     "data_type": "string",
                     "required": true,
                     "default": "ADMIN$",
@@ -2313,13 +2313,13 @@
                     "order": 7
                 },
                 "nooutput": {
-                    "description": "whether or not to print the output (no SMB connection created)",
+                    "description": "Whether or not to print the output (no SMB connection created)",
                     "data_type": "boolean",
                     "default": false,
                     "order": 8
                 },
                 "silentcommand": {
-                    "description": "does not execute cmd.exe to run given command (no output)",
+                    "description": "Does not execute cmd.exe to run given command (no output)",
                     "data_type": "boolean",
                     "default": false,
                     "order": 9
