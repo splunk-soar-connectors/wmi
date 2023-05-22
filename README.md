@@ -442,7 +442,7 @@ action\_result\.parameter\.aesKey | string |
 action\_result\.parameter\.k | boolean | 
 action\_result\.parameter\.nooutput | boolean | 
 action\_result\.parameter\.silentcommand | boolean | 
-action\_result\.data\.\*\.\*\ | string | 
+action\_result\.data\.\*\.\* | string | 
 action\_result\.summary.stdout | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
