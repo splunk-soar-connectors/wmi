@@ -417,7 +417,7 @@ Read only: **True**
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**command** |  required  | command to execute at the target, seperated by comma if more than one is required | string | 
+**command** |  required  | Command to execute at the target, seperated by comma if more than one is required | string | 
 **shell\_type** |  required  | Choose a command processor for the semi-interactive shell | string | `cmd` `powershell`
 **share** |  required  | Share where the output will be grabbed from \(default ADMIN$\) | string | 
 **domain** |  optional  | Domain of server with which we want to connect | string | 
