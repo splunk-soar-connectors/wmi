@@ -2377,38 +2377,33 @@
                     "data_type": "string",
                     "order": 3
                 },
-                "authfile": {
-                    "description": "Authentication file of smbclient/mount.cifs-style. See smbclient man page's -A option",
-                    "data_type": "string",
-                    "order": 4
-                },
                 "hashes": {
                     "description": "NTLM hashes, format is LMHASH:NTHASH",
                     "data_type": "string",
-                    "order": 5
+                    "order": 4
                 },
                 "aesKey": {
                     "description": "AES key to use for Kerberos Authentication (128 or 256 bits)",
                     "data_type": "string",
-                    "order": 6
+                    "order": 5
                 },
                 "k": {
                     "description": "Use Kerberos authentication. Grabs credentials from ccache file (KRB5CCNAME) based on target parameters. If valid credentials cannot be found, it will use the ones specified in the command line",
                     "data_type": "boolean",
                     "default": false,
-                    "order": 7
+                    "order": 6
                 },
                 "nooutput": {
                     "description": "Whether or not to print the output (no SMB connection created)",
                     "data_type": "boolean",
                     "default": false,
-                    "order": 8
+                    "order": 7
                 },
                 "silentcommand": {
                     "description": "Does not execute cmd.exe to run given command (no output)",
                     "data_type": "boolean",
                     "default": false,
-                    "order": 9
+                    "order": 8
                 }
             },
             "output": [
@@ -2424,10 +2419,6 @@
                 },
                 {
                     "data_path": "action_result.parameter.aesKey",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.parameter.authfile",
                     "data_type": "string"
                 },
                 {

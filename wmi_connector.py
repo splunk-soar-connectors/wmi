@@ -22,7 +22,7 @@ from phantom.base_connector import BaseConnector
 
 import wmi_client_wrapper as wmi
 from wmi_consts import *
-from wmi_executer import WMIEXEC, load_smbclient_auth_file
+from wmi_executer import WMIEXEC
 
 
 class WmiConnector(BaseConnector):
@@ -251,7 +251,6 @@ class WmiConnector(BaseConnector):
         shell_type = param['shell_type']
         share = param['share']
         domain = param.get('domain', '')
-        authfile = param.get('authfile', None)
         hashes = param.get('hashes', None)
         aesKey = param.get('aesKey', None)
         k = param.get('k', False)
@@ -268,12 +267,10 @@ class WmiConnector(BaseConnector):
         stdout_arr = []
         try:
             command = None
-            if authfile is not None:
-                (domain, username, password) = load_smbclient_auth_file(authfile)
 
             for command in commands:
                 executer = WMIEXEC(command.strip(), username, password, domain, hashes, aesKey, share,
-                                   nooutput, k, authfile, shell_type)
+                                   nooutput, k, None, shell_type)
                 executer.run(ip_address, silentcommand)
                 stdout_arr.append(executer.shell._RemoteShell__outputBuffer)
         except Exception as e:

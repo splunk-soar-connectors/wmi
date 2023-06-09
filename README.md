@@ -421,7 +421,6 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 **shell\_type** |  required  | Choose a command processor for the semi-interactive shell | string | `cmd` `powershell`
 **share** |  required  | Share where the output will be grabbed from \(default ADMIN$\) | string | 
 **domain** |  optional  | Domain of server with which we want to connect | string | 
-**authfile** |  optional  | smbclient/mount.cifs-style authentication file. See smbclient man page's -A option. | string | 
 **hashes** |  optional  | NTLM hashes, format is LMHASH:NTHASH | string | 
 **aesKey** |  optional  | AES key to use for Kerberos Authentication (128 or 256 bits) | string | 
 **k** |  optional  | Use Kerberos authentication. Grabs credentials from ccache file \(KRB5CCNAME\) based on target parameters. If valid credentials cannot be found, it will use the ones specified in the command line | boolean | 
@@ -436,7 +435,6 @@ action\_result\.parameter\.command | string |
 action\_result\.parameter\.shell\_type | string | `cmd` `powershell`
 action\_result\.parameter\.share | string | 
 action\_result\.parameter\.domain | string | 
-action\_result\.parameter\.authfile | string | 
 action\_result\.parameter\.hashes | string | 
 action\_result\.parameter\.aesKey | string | 
 action\_result\.parameter\.k | boolean | 
