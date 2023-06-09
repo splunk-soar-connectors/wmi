@@ -6,29 +6,117 @@
     "type": "endpoint",
     "main_module": "wmi_connector.py",
     "python_version": "3",
-    "app_version": "2.1.8-fdse.1",
+    "app_version": "2.2.0",
     "utctime_updated": "2022-01-07T20:50:38.000000Z",
     "package_name": "phantom_wmi",
     "product_vendor": "Microsoft",
     "product_name": "Windows Server",
     "product_version_regex": ".*",
-    "min_phantom_version": "5.1.0",
-    "fips_compliant": true,
+    "min_phantom_version": "6.0.0",
+    "fips_compliant": false,
     "logo": "logo_microsoft_wmi.svg",
     "logo_dark": "logo_microsoft_wmi_dark.svg",
-    "license": "Copyright (c) 2016-2022 Splunk Inc.",
+    "license": "Copyright (c) 2016-2023 Splunk Inc.",
     "latest_tested_versions": [
-        "On-Prem on 20th August, 2021"
+        "On-Prem on 8th June, 2023"
     ],
     "pip_dependencies": {
         "wheel": [
             {
-                "module": "sh",
-                "input_file": "wheels/sh-1.12.14-py2.py3-none-any.whl"
+                "module": "Flask",
+                "input_file": "wheels/py3/Flask-2.0.3-py3-none-any.whl"
+            },
+            {
+                "module": "Jinja2",
+                "input_file": "wheels/py3/Jinja2-3.0.3-py3-none-any.whl"
+            },
+            {
+                "module": "MarkupSafe",
+                "input_file": "wheels/py36/MarkupSafe-2.0.1-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "Werkzeug",
+                "input_file": "wheels/py3/Werkzeug-2.0.3-py3-none-any.whl"
+            },
+            {
+                "module": "cffi",
+                "input_file": "wheels/py36/cffi-1.15.1-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "chardet",
+                "input_file": "wheels/py3/chardet-5.0.0-py3-none-any.whl"
+            },
+            {
+                "module": "click",
+                "input_file": "wheels/py3/click-8.0.4-py3-none-any.whl"
+            },
+            {
+                "module": "cryptography",
+                "input_file": "wheels/py36/cryptography-40.0.2-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "dataclasses",
+                "input_file": "wheels/py3/dataclasses-0.8-py3-none-any.whl"
+            },
+            {
+                "module": "dnspython",
+                "input_file": "wheels/py3/dnspython-2.2.1-py3-none-any.whl"
+            },
+            {
+                "module": "future",
+                "input_file": "wheels/py3/future-0.18.3-py3-none-any.whl"
             },
             {
                 "module": "impacket",
-                "input_file": "wheels/impacket-0.10.0-py3-none-any.whl"
+                "input_file": "wheels/py3/impacket-0.10.0-py3-none-any.whl"
+            },
+            {
+                "module": "importlib_metadata",
+                "input_file": "wheels/py3/importlib_metadata-4.8.3-py3-none-any.whl"
+            },
+            {
+                "module": "itsdangerous",
+                "input_file": "wheels/py3/itsdangerous-2.0.1-py3-none-any.whl"
+            },
+            {
+                "module": "ldap3",
+                "input_file": "wheels/shared/ldap3-2.9.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ldapdomaindump",
+                "input_file": "wheels/py3/ldapdomaindump-0.9.4-py3-none-any.whl"
+            },
+            {
+                "module": "pyOpenSSL",
+                "input_file": "wheels/py3/pyOpenSSL-23.2.0-py3-none-any.whl"
+            },
+            {
+                "module": "pyasn1",
+                "input_file": "wheels/shared/pyasn1-0.5.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "pycparser",
+                "input_file": "wheels/shared/pycparser-2.21-py2.py3-none-any.whl"
+            },
+            {
+                "module": "pycryptodomex",
+                "input_file": "wheels/py3/pycryptodomex-3.18.0-cp35-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "sh",
+                "input_file": "wheels/shared/sh-1.12.14-py2.py3-none-any.whl"
+            },
+            {
+                "module": "six",
+                "input_file": "wheels/shared/six-1.16.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "typing_extensions",
+                "input_file": "wheels/py3/typing_extensions-4.1.1-py3-none-any.whl"
+            },
+            {
+                "module": "zipp",
+                "input_file": "wheels/py3/zipp-3.6.0-py3-none-any.whl"
             }
         ]
     },
@@ -239,7 +327,7 @@
                     "column_name": "Path Name",
                     "column_order": 7,
                     "example_values": [
-                        "C:\\Windows\\ADWS\\Microsoft.ActiveDirectory.WebServices.exe"
+                        "C:\\Windows\\ADWS\\Test.ActiveDirectory.WebServices.exe"
                     ]
                 },
                 {
@@ -551,7 +639,7 @@
                 {
                     "data_path": "action_result.data.*.os_details.CSDVersion",
                     "data_type": "string",
-                    "column_name": "SP Version",
+                    "column_name": "Sp Version",
                     "column_order": 4,
                     "example_values": [
                         "Service Pack 1"
@@ -568,7 +656,7 @@
                     "data_path": "action_result.data.*.os_details.Caption",
                     "data_type": "string",
                     "example_values": [
-                        "Microsoft Windows Server 2008 R2 Enterprise "
+                        "Test Windows Server 2008 R2 Enterprise "
                     ],
                     "column_name": "OS",
                     "column_order": 1
@@ -736,7 +824,7 @@
                     "data_path": "action_result.data.*.os_details.Manufacturer",
                     "data_type": "string",
                     "example_values": [
-                        "Microsoft Corporation"
+                        "Test Corporation"
                     ]
                 },
                 {
@@ -757,7 +845,7 @@
                     "data_path": "action_result.data.*.os_details.Name",
                     "data_type": "string",
                     "example_values": [
-                        "Microsoft Windows Server 2008 R2 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2"
+                        "Test Windows Server 2008 R2 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2"
                     ]
                 },
                 {
@@ -1064,7 +1152,7 @@
                     "contains": [
                         "host name"
                     ],
-                    "column_name": "DNS Host Name",
+                    "column_name": "Dns Host Name",
                     "column_order": 0,
                     "example_values": [
                         "DC1"
@@ -1420,7 +1508,7 @@
                     "data_path": "action_result.summary.version",
                     "data_type": "string",
                     "example_values": [
-                        "Microsoft Windows Server 2008 R2 Enterprise  [6.1.7601] 64-bit Service Pack 1"
+                        "Test Server 2008 R2 Enterprise  [6.1.7601] 64-bit Service Pack 1"
                     ]
                 },
                 {
@@ -1431,7 +1519,7 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "Dns hostname: DC1\nDomain: corp.contoso.com\nVersion: Microsoft Windows Server 2008 R2 Enterprise  [6.1.7601] 64-bit Service Pack 1\nWorkgroup: None\nMemory: 4294500352"
+                        "Dns hostname: DC1\nDomain: test.test.com\nVersion: Test Server 2008 R2 Enterprise  [6.1.7601] 64-bit Service Pack 1\nWorkgroup: None\nMemory: 4294500352"
                     ]
                 },
                 {
@@ -1634,7 +1722,7 @@
                 {
                     "data_path": "action_result.data.*.SID",
                     "data_type": "string",
-                    "column_name": "SID",
+                    "column_name": "Sid",
                     "column_order": 8,
                     "example_values": [
                         "S-1-5-21-3790544232-372029393-2474287633-500"
@@ -1643,7 +1731,7 @@
                 {
                     "data_path": "action_result.data.*.SIDType",
                     "data_type": "string",
-                    "column_name": "SID Type",
+                    "column_name": "Sid Type",
                     "column_order": 9,
                     "example_values": [
                         "1"
@@ -1763,16 +1851,14 @@
                     "data_path": "action_result.parameter.namespace",
                     "data_type": "string",
                     "example_values": [
-                        "root/MicrosoftDNS"
+                        "root/TestDNS"
                     ]
                 },
                 {
                     "data_path": "action_result.parameter.query",
                     "data_type": "string",
                     "example_values": [
-                        "Select * From Win32_Process",
-                        "select * from Win32_Account where SIDType = 1",
-                        "select * from CIM_Component"
+                        "Select * From Win32_Process"
                     ]
                 },
                 {
@@ -1802,8 +1888,7 @@
                     "data_path": "action_result.data.*.*.Caption",
                     "data_type": "string",
                     "example_values": [
-                        "System Idle Process",
-                        "CORP\\Administrator"
+                        "System Idle Process"
                     ],
                     "contains": [
                         "file name"
@@ -1839,7 +1924,6 @@
                     "column_name": "Description",
                     "column_order": 6,
                     "example_values": [
-                        "System Idle Process",
                         "Built-in account for administering the computer/domain"
                     ],
                     "contains": [
@@ -1894,7 +1978,7 @@
                     "data_path": "action_result.data.*.*.GroupComponent",
                     "data_type": "string",
                     "example_values": [
-                        "MicrosoftDNS_Domain.DnsServerName=\"DC1.corp.contoso.com\",ContainerName=\"..RootHints\",Name=\"com.\""
+                        "TestDNS_Domain.DnsServerName=\"DC1.corp.contoso.com\",ContainerName=\"..RootHints\",Name=\"com.\""
                     ]
                 },
                 {
@@ -1958,7 +2042,6 @@
                     "column_name": "Name",
                     "column_order": 2,
                     "example_values": [
-                        "System Idle Process",
                         "Administrator"
                     ],
                     "contains": [
@@ -1978,7 +2061,7 @@
                     "column_name": "OS Name",
                     "column_order": 9,
                     "example_values": [
-                        "Microsoft Windows Server 2008 R2 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2"
+                        "Test Windows Server 2008 R2 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2"
                     ]
                 },
                 {
@@ -2025,7 +2108,7 @@
                     "data_path": "action_result.data.*.*.PartComponent",
                     "data_type": "string",
                     "example_values": [
-                        "MicrosoftDNS_Domain.DnsServerName=\"DC1.corp.contoso.com\",ContainerName=\"..RootHints\",Name=\"microsoft.com.\""
+                        "TestDNS_Domain.DnsServerName=\"DC1.corp.contoso.com\",ContainerName=\"..RootHints\",Name=\"Test.com.\""
                     ]
                 },
                 {
@@ -2274,7 +2357,10 @@
                 "shell_type": {
                     "description": "Choose a command processor for the semi-interactive shell",
                     "data_type": "string",
-                    "value_list": ["cmd", "powershell"],
+                    "value_list": [
+                        "cmd",
+                        "powershell"
+                    ],
                     "default": "cmd",
                     "required": true,
                     "order": 1
@@ -2292,7 +2378,7 @@
                     "order": 3
                 },
                 "authfile": {
-                    "description": "smbclient/mount.cifs-style authentication file. See smbclient man page's -A option.",
+                    "description": "Authentication file of smbclient/mount.cifs-style. See smbclient man page's -A option",
                     "data_type": "string",
                     "order": 4
                 },
@@ -2330,18 +2416,14 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "Status",
-                    "column_order": 1,
+                    "column_order": 0,
                     "example_values": [
                         "success",
                         "failed"
                     ]
                 },
                 {
-                    "data_path": "action_result.parameter.command",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.parameter.shell_type",
+                    "data_path": "action_result.parameter.aesKey",
                     "data_type": "string"
                 },
                 {
@@ -2349,15 +2431,15 @@
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.parameter.share",
+                    "data_path": "action_result.parameter.command",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.domain",
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.parameter.hashes",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.parameter.aesKey",
                     "data_type": "string"
                 },
                 {
@@ -2369,6 +2451,14 @@
                     "data_type": "boolean"
                 },
                 {
+                    "data_path": "action_result.parameter.share",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.shell_type",
+                    "data_type": "string"
+                },
+                {
                     "data_path": "action_result.parameter.silentcommand",
                     "data_type": "boolean"
                 },
@@ -2377,23 +2467,135 @@
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.summary.stdout",
+                    "data_path": "action_result.summary",
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Program executed successfully"
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 }
             ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "wmi_view.execute_program",
+                "title": "Execute Program"
+            },
             "versions": "EQ(*)"
         }
-    ]
+    ],
+    "pip39_dependencies": {
+        "wheel": [
+            {
+                "module": "Flask",
+                "input_file": "wheels/py3/Flask-2.3.2-py3-none-any.whl"
+            },
+            {
+                "module": "Jinja2",
+                "input_file": "wheels/py3/Jinja2-3.1.2-py3-none-any.whl"
+            },
+            {
+                "module": "MarkupSafe",
+                "input_file": "wheels/py39/MarkupSafe-2.1.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "Werkzeug",
+                "input_file": "wheels/py3/Werkzeug-2.3.6-py3-none-any.whl"
+            },
+            {
+                "module": "blinker",
+                "input_file": "wheels/py3/blinker-1.6.2-py3-none-any.whl"
+            },
+            {
+                "module": "cffi",
+                "input_file": "wheels/py39/cffi-1.15.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "chardet",
+                "input_file": "wheels/py3/chardet-5.1.0-py3-none-any.whl"
+            },
+            {
+                "module": "click",
+                "input_file": "wheels/py3/click-8.1.3-py3-none-any.whl"
+            },
+            {
+                "module": "cryptography",
+                "input_file": "wheels/py3/cryptography-41.0.1-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "dnspython",
+                "input_file": "wheels/py3/dnspython-2.3.0-py3-none-any.whl"
+            },
+            {
+                "module": "future",
+                "input_file": "wheels/py3/future-0.18.3-py3-none-any.whl"
+            },
+            {
+                "module": "impacket",
+                "input_file": "wheels/py3/impacket-0.10.0-py3-none-any.whl"
+            },
+            {
+                "module": "importlib_metadata",
+                "input_file": "wheels/py3/importlib_metadata-6.6.0-py3-none-any.whl"
+            },
+            {
+                "module": "itsdangerous",
+                "input_file": "wheels/py3/itsdangerous-2.1.2-py3-none-any.whl"
+            },
+            {
+                "module": "ldap3",
+                "input_file": "wheels/shared/ldap3-2.9.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ldapdomaindump",
+                "input_file": "wheels/py3/ldapdomaindump-0.9.4-py3-none-any.whl"
+            },
+            {
+                "module": "pyOpenSSL",
+                "input_file": "wheels/py3/pyOpenSSL-23.2.0-py3-none-any.whl"
+            },
+            {
+                "module": "pyasn1",
+                "input_file": "wheels/shared/pyasn1-0.5.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "pycparser",
+                "input_file": "wheels/shared/pycparser-2.21-py2.py3-none-any.whl"
+            },
+            {
+                "module": "pycryptodomex",
+                "input_file": "wheels/py3/pycryptodomex-3.18.0-cp35-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "sh",
+                "input_file": "wheels/shared/sh-1.12.14-py2.py3-none-any.whl"
+            },
+            {
+                "module": "six",
+                "input_file": "wheels/shared/six-1.16.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "zipp",
+                "input_file": "wheels/py3/zipp-3.15.0-py3-none-any.whl"
+            }
+        ]
+    }
 }

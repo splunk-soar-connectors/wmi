@@ -1,6 +1,6 @@
 # File: wmi_connector.py
 #
-# Copyright (c) 2016-2022 Splunk Inc.
+# Copyright (c) 2016-2023 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -43,39 +43,39 @@ class WmiConnector(BaseConnector):
 
     def _get_error_message_from_exception(self, e):
         """
-        This method is used to get appropriate error messages from the exception.
-
+        Get appropriate error message from the exception.
         :param e: Exception object
-        :return: Error message
+        :return: error message
         """
 
-        error_code = WMI_ERR_CODE_MSG
-        error_msg = WMI_ERR_MSG_UNAVAILABLE
+        error_code = None
+        error_msg = ERR_MSG_UNAVAILABLE
+
+        self.error_print("Error occurred.", dump_object=e)
+
         try:
-            if e.args:
+            if hasattr(e, "args"):
                 if len(e.args) > 1:
                     error_code = e.args[0]
                     error_msg = e.args[1]
                 elif len(e.args) == 1:
-                    error_code = WMI_ERR_CODE_MSG
                     error_msg = e.args[0]
-        except:
-            pass
+        except Exception as e:
+            self.error_print(
+                "Error occurred while fetching exception information. Details: {}".format(str(e)))
 
-        try:
-            if error_code in WMI_ERR_CODE_MSG:
-                error_text = "Error Message: {0}".format(error_msg)
-            else:
-                error_text = "Error Code: {0}. Error Message: {1}".format(error_code, error_msg)
-        except:
-            self.debug_print("Error occurred while parsing error message")
-            error_text = WMI_PARSE_ERR_MSG
+        if not error_code:
+            error_text = "Error Message: {}".format(error_msg)
+        else:
+            error_text = "Error Code: {}. Error Message: {}".format(
+                error_code, error_msg)
 
         return error_text
 
     def _modify_exception_message(self, e):
 
-        mod_msg = re.sub('%.* ', '%<password> ', self._get_error_message_from_exception(e))
+        mod_msg = re.sub('%.* ', '%<password> ',
+                         self._get_error_message_from_exception(e))
 
         self.debug_print("Modified Exception Message:", mod_msg)
 
@@ -83,24 +83,27 @@ class WmiConnector(BaseConnector):
 
     def _run_query(self, query, wmic, action_result):
 
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress("In action handler for: {0}".format(
+            self.get_action_identifier()))
 
         try:
             ret_data = wmic.query(query)
         except Exception as e:
-            action_result.set_status(phantom.APP_ERROR, WMI_ERR_QUERY_EXECUTION_FAILED)
+            action_result.set_status(
+                phantom.APP_ERROR, WMI_ERR_QUERY_EXECUTION_FAILED)
             action_result.append_to_message(self._modify_exception_message(e))
             return None
 
-        # print "In _run_query::Query Returned"
         self.debug_print("query_results", ret_data)
 
         if not ret_data:
-            action_result.set_status(phantom.APP_ERROR, "Data retrieved was empty")
+            action_result.set_status(
+                phantom.APP_ERROR, "Data retrieved was empty")
             return None
 
         if not isinstance(ret_data, list):
-            action_result.set_status(phantom.APP_ERROR, "Invalid Data received")
+            action_result.set_status(
+                phantom.APP_ERROR, "Invalid Data received")
             return None
 
         action_result.set_status(phantom.APP_SUCCESS)
@@ -146,7 +149,8 @@ class WmiConnector(BaseConnector):
         summary = {}
 
         try:
-            summary[WMI_JSON_DNSHOSTNAME] = data[WMI_JSON_SYSTEM_DETAILS].get('DNSHostName', '')
+            summary[WMI_JSON_DNSHOSTNAME] = data[WMI_JSON_SYSTEM_DETAILS].get(
+                'DNSHostName', '')
         except:
             pass
 
@@ -185,7 +189,8 @@ class WmiConnector(BaseConnector):
         ret_data = self._run_query(query, wmic, action_result)
 
         if phantom.is_success(action_result.get_status()) and len(ret_data):
-            action_result.update_summary({WMI_JSON_TOTAL_PROCESSES: len(ret_data)})
+            action_result.update_summary(
+                {WMI_JSON_TOTAL_PROCESSES: len(ret_data)})
             for curr_process in ret_data:
                 action_result.add_data(curr_process)
 
@@ -193,7 +198,8 @@ class WmiConnector(BaseConnector):
 
     def _get_services(self, wmic, action, action_result):
 
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress("In action handler for: {0}".format(
+            self.get_action_identifier()))
 
         query = "select * from Win32_Service"
 
@@ -204,13 +210,15 @@ class WmiConnector(BaseConnector):
         self.debug_print("query_results", ret_data)
 
         if phantom.is_success(action_result.get_status()) and len(ret_data):
-            action_result.update_summary({WMI_JSON_TOTAL_SERVICES: len(ret_data)})
+            action_result.update_summary(
+                {WMI_JSON_TOTAL_SERVICES: len(ret_data)})
             total_running = 0
             for curr_service in ret_data:
                 action_result.add_data(curr_service)
                 if curr_service.get('State', 'Unknown') == 'Running':
                     total_running += 1
-            action_result.update_summary({WMI_JSON_RUNNING_SERVICES: total_running})
+            action_result.update_summary(
+                {WMI_JSON_RUNNING_SERVICES: total_running})
         else:
             action_result.update_summary({WMI_JSON_TOTAL_SERVICES: 0})
 
@@ -218,7 +226,8 @@ class WmiConnector(BaseConnector):
 
     def _get_users(self, wmic, action_result):
 
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress("In action handler for: {0}".format(
+            self.get_action_identifier()))
 
         query = "select * from Win32_Account where SIDType = 1"
 
@@ -229,11 +238,11 @@ class WmiConnector(BaseConnector):
             action_result.update_summary({WMI_JSON_TOTAL_USERS: len(ret_data)})
             total_disabled = 0
             for curr_user in ret_data:
-                # print "Service: \n %s" % curr_user
                 action_result.add_data(curr_user)
                 if curr_user.get('Disabled'):
                     total_disabled += 1
-            action_result.update_summary({WMI_JSON_DISABLED_USERS: total_disabled})
+            action_result.update_summary(
+                {WMI_JSON_DISABLED_USERS: total_disabled})
 
         return action_result.get_status()
 
@@ -245,33 +254,36 @@ class WmiConnector(BaseConnector):
         authfile = param.get('authfile', None)
         hashes = param.get('hashes', None)
         aesKey = param.get('aesKey', None)
-        k = param['k']
-        nooutput = param['nooutput']
-        silentcommand = param['silentcommand']
+        k = param.get('k', False)
+        nooutput = param.get('nooutput', False)
+        silentcommand = param.get('silentcommand', False)
 
         self.save_progress("In action handler for: {0}".format(
             self.get_action_identifier()))
         action_result = self.add_action_result(ActionResult(dict(param)))
 
+        shell_type = shell_type.lower()
+        if shell_type not in ["cmd", "powershell"]:
+            return action_result.set_status(phantom.APP_ERROR, "please enter a valid value for shell type")
         stdout_arr = []
         try:
             command = None
             if authfile is not None:
-              (domain, username, password) = load_smbclient_auth_file(authfile) 
+                (domain, username, password) = load_smbclient_auth_file(authfile)
 
             for command in commands:
                 executer = WMIEXEC(command.strip(), username, password, domain, hashes, aesKey, share,
-                                        nooutput, k, authfile, shell_type)
+                                   nooutput, k, authfile, shell_type)
                 executer.run(ip_address, silentcommand)
                 stdout_arr.append(executer.shell._RemoteShell__outputBuffer)
         except Exception as e:
-            import traceback
             error_message = self._get_error_message_from_exception(e)
             return action_result.set_status(phantom.APP_ERROR,
                                             f'{"Error occurred while executing program, Error: "}{error_message} for command {command}')
 
-        summary = action_result.update_summary({})
-        summary['stdout'] = "\n----\n".join(stdout_arr)
+        for output, command in zip(stdout_arr, commands):
+            action_result.add_data(f"---- Command: {command} \n {output}")
+
         return action_result.set_status(phantom.APP_SUCCESS, 'Program executed successfully')
 
     def _test_connectivity(self, wmic, action_result):
@@ -320,18 +332,22 @@ class WmiConnector(BaseConnector):
         namespace = param.get('namespace', '//./root/cimv2')
 
         action_result = self.add_action_result(ActionResult(dict(param)))
-        action_result.update_param({phantom.APP_JSON_IP_HOSTNAME: curr_machine})
+        action_result.update_param(
+            {phantom.APP_JSON_IP_HOSTNAME: curr_machine})
         wmic = None
 
-        self.save_progress(phantom.APP_PROG_CONNECTING_TO_ELLIPSES, curr_machine)
+        self.save_progress(
+            phantom.APP_PROG_CONNECTING_TO_ELLIPSES, curr_machine)
 
         force_ntlm_v2 = config.get('force_ntlmv2', False)
 
         try:
-            wmic = wmi.WmiClientWrapper(username=user, password=passw, host=curr_machine, namespace=namespace, force_ntlm_v2=force_ntlm_v2)
+            wmic = wmi.WmiClientWrapper(
+                username=user, password=passw, host=curr_machine, namespace=namespace, force_ntlm_v2=force_ntlm_v2)
         except Exception as e:
             self.save_progress(WMI_MSG_CONNECTION_FAILED, machine=curr_machine)
-            action_result.set_status(phantom.APP_ERROR, WMI_MSG_CONNECTION_FAILED, machine=curr_machine)
+            action_result.set_status(
+                phantom.APP_ERROR, WMI_MSG_CONNECTION_FAILED, machine=curr_machine)
             action_result.append_to_message(self._modify_exception_message(e))
             return action_result.get_status()
 

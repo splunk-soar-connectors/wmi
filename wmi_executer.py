@@ -1,20 +1,37 @@
-from __future__ import division
-from __future__ import print_function
-import sys
-import os
+# File: wmi_executer.py
+
+# Copyright (c) 2016-2023 Splunk Inc.
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software distributed under
+# the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific language governing permissions
+# and limitations under the License.
+
+
+# Json keys specific to wmi app's input parameters/config and the output result
+from __future__ import division, print_function
+
 import cmd
-import time
 import logging
 import ntpath
+import os
+import sys
+import time
 from base64 import b64encode
 
-from impacket.smbconnection import SMBConnection, SMB_DIALECT, SMB2_DIALECT_002, SMB2_DIALECT_21
-from impacket.dcerpc.v5.dcomrt import DCOMConnection
 from impacket.dcerpc.v5.dcom import wmi
+from impacket.dcerpc.v5.dcomrt import DCOMConnection
 from impacket.dcerpc.v5.dtypes import NULL
+from impacket.smbconnection import SMB2_DIALECT_002, SMB2_DIALECT_21, SMB_DIALECT, SMBConnection
 from six import PY2
 
-from wmi_consts import OUTPUT_FILENAME, CODEC
+from wmi_consts import CODEC, OUTPUT_FILENAME
 
 
 class WMIEXEC:
@@ -38,28 +55,30 @@ class WMIEXEC:
 
     def run(self, addr, silentCommand=False):
         if self.__noOutput is False and silentCommand is False:
-            smbConnection = SMBConnection(addr, addr)
-            if self.__doKerberos is False:
-                smbConnection.login(self.__username, self.__password, self.__domain, self.__lmhash, self.__nthash)
-            else:
-                smbConnection.kerberosLogin(self.__username, self.__password, self.__domain, self.__lmhash,
-                                            self.__nthash, self.__aesKey, kdcHost=self.__kdcHost)
-
-            dialect = smbConnection.getDialect()
-            if dialect == SMB_DIALECT:
-                logging.info("SMBv1 dialect used")
-            elif dialect == SMB2_DIALECT_002:
-                logging.info("SMBv2.0 dialect used")
-            elif dialect == SMB2_DIALECT_21:
-                logging.info("SMBv2.1 dialect used")
-            else:
-                logging.info("SMBv3.0 dialect used")
+            try:
+                smbConnection = SMBConnection(addr, addr)
+                if self.__doKerberos is False:
+                    smbConnection.login(self.__username, self.__password, self.__domain, self.__lmhash, self.__nthash)
+                else:
+                    smbConnection.kerberosLogin(self.__username, self.__password, self.__domain, self.__lmhash,
+                                                self.__nthash, self.__aesKey, kdcHost=self.__kdcHost)
+                dialect = smbConnection.getDialect()
+                if dialect == SMB_DIALECT:
+                    logging.info("SMBv1 dialect used")
+                elif dialect == SMB2_DIALECT_002:
+                    logging.info("SMBv2.0 dialect used")
+                elif dialect == SMB2_DIALECT_21:
+                    logging.info("SMBv2.1 dialect used")
+                else:
+                    logging.info("SMBv3.0 dialect used")
+            except Exception as e:
+                raise Exception(e)
         else:
             smbConnection = None
 
-        dcom = DCOMConnection(addr, self.__username, self.__password, self.__domain, self.__lmhash, self.__nthash,
-                              self.__aesKey, oxidResolver=True, doKerberos=self.__doKerberos, kdcHost=self.__kdcHost)
         try:
+            dcom = DCOMConnection(addr, self.__username, self.__password, self.__domain, self.__lmhash, self.__nthash,
+                                  self.__aesKey, oxidResolver=True, doKerberos=self.__doKerberos, kdcHost=self.__kdcHost)
             iInterface = dcom.CoCreateInstanceEx(wmi.CLSID_WbemLevel1Login, wmi.IID_IWbemLevel1Login)
             iWbemLevel1Login = wmi.IWbemLevel1Login(iInterface)
             iWbemServices = iWbemLevel1Login.NTLMLogin('//./root/cimv2', NULL, NULL)
@@ -72,7 +91,7 @@ class WMIEXEC:
                 self.shell.onecmd(self.__command)
             else:
                 self.shell.cmdloop()
-        except  (Exception, KeyboardInterrupt) as e:
+        except (Exception, KeyboardInterrupt) as e:
             if logging.getLogger().level == logging.DEBUG:
                 import traceback
                 traceback.print_exc()
@@ -81,7 +100,7 @@ class WMIEXEC:
                 smbConnection.logoff()
             dcom.disconnect()
             sys.stdout.flush()
-            sys.exit(1)
+            raise Exception(e)
 
         if smbConnection is not None:
             smbConnection.logoff()
@@ -191,7 +210,7 @@ class RemoteShell(cmd.Cmd):
         self.execute_remote('cd ' + s)
         if len(self.__outputBuffer.strip('\r\n')) > 0:
             print(self.__outputBuffer)
-            #self.__outputBuffer = ''
+            # self.__outputBuffer = ''
         else:
             if PY2:
                 self.__pwd = ntpath.normpath(ntpath.join(self.__pwd, s.decode(sys.stdin.encoding)))
@@ -202,7 +221,7 @@ class RemoteShell(cmd.Cmd):
             self.prompt = (self.__pwd + '>')
             if self.__shell_type == 'powershell':
                 self.prompt = 'PS ' + self.prompt + ' '
-            #self.__outputBuffer = ''
+            # self.__outputBuffer = ''
 
     def default(self, line):
         # Let's try to guess if the user is trying to change drive
@@ -212,14 +231,14 @@ class RemoteShell(cmd.Cmd):
             if len(self.__outputBuffer.strip('\r\n')) > 0:
                 # Something went wrong
                 print(self.__outputBuffer)
-                #self.__outputBuffer = ''
+                # self.__outputBuffer = ''
             else:
                 # Drive valid, now we should get the current path
                 self.__pwd = line
                 self.execute_remote('cd ')
                 self.__pwd = self.__outputBuffer.strip('\r\n')
                 self.prompt = (self.__pwd + '>')
-                #self.__outputBuffer = ''
+                # self.__outputBuffer = ''
         else:
             if line != '':
                 self.send_data(line)
@@ -235,7 +254,7 @@ class RemoteShell(cmd.Cmd):
                 self.__outputBuffer += data.decode(CODEC, errors='replace')
 
         if self.__noOutput is True:
-            #self.__outputBuffer = ''
+            # self.__outputBuffer = ''
             return
 
         while True:
@@ -272,7 +291,8 @@ class RemoteShell(cmd.Cmd):
     def send_data(self, data):
         self.execute_remote(data, self.__shell_type)
         print(self.__outputBuffer)
-        #self.__outputBuffer = ''
+        # self.__outputBuffer = ''
+
 
 class AuthFileSyntaxError(Exception):
     '''raised by load_smbclient_auth_file if it encounters a syntax error
@@ -286,6 +306,7 @@ class AuthFileSyntaxError(Exception):
     def __str__(self):
         return 'Syntax error in auth file %s line %d: %s' % (
             self.path, self.lineno, self.reason)
+
 
 def load_smbclient_auth_file(path):
     '''Load credentials from an smbclient-style authentication file (used by

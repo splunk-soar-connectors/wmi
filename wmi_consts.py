@@ -1,19 +1,19 @@
 # File: wmi_consts.py
-#
-# Copyright (c) 2016-2022 Splunk Inc.
-#
+
+# Copyright (c) 2016-2023 Splunk Inc.
+
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#
+
 #     http://www.apache.org/licenses/LICENSE-2.0
-#
+
 # Unless required by applicable law or agreed to in writing, software distributed under
 # the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
-#
-#
+
+
 # Json keys specific to wmi app's input parameters/config and the output result
 import time
 
@@ -34,8 +34,8 @@ WMI_JSON_VERSION = "version"
 
 # Status messages for wmi app
 WMI_SUCC_QUERY_EXECUTED = "WMI Query executed"
-WMI_ERR_QUERY_EXECUTION_FAILED = "WMI query failed."
-WMI_ERR_QUERY_EXECUTION_FAILED += "\nPlease make sure remote WMI access is enabled on the target machine."
+WMI_ERR_QUERY_EXECUTION_FAILED = "WMI query failed"
+WMI_ERR_QUERY_EXECUTION_FAILED += "\nPlease make sure remote WMI access is enabled on the target machine"
 WMI_ERR_QUERY_EXECUTION_FAILED += "\nAny firewall if present is configured to allow remote WMI communication"
 WMI_SUCC_SYS_INFO_QUERIED = "System info queried"
 
@@ -46,9 +46,7 @@ WMI_MSG_CONNECTION_FAILED = "WMI connection to {machine} failed"
 CONN_PY_PROG_SENDING_QUERY = "Executing WMI query"
 
 # Constants relating to '_get_error_message_from_exception'
-WMI_ERR_CODE_MSG = "Error code unavailable"
-WMI_ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
-WMI_PARSE_ERR_MSG = "Unable to parse the error message. Please check the asset configuration and|or action parameters"
+ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
 
 OUTPUT_FILENAME = '__' + str(time.time())
 CODEC = 'utf-8'
