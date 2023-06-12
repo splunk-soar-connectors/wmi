@@ -20,6 +20,7 @@ from __future__ import division, print_function
 import cmd
 import logging
 import ntpath
+import re
 import os
 import sys
 import time
@@ -35,12 +36,16 @@ from wmi_consts import CODEC, OUTPUT_FILENAME
 
 
 class WMIEXEC:
-    def __init__(self, command='', username='', password='', domain='', hashes=None, aesKey=None, share=None,
+    def __init__(self, command='', username='', password='', hashes=None, aesKey=None, share=None,
                  noOutput=False, doKerberos=False, kdcHost=None, shell_type=None):
+        self.__delimeter = r'(?P<domain>.*)\b[\\,\/]\b(?P<username>.*)'
+        try:
+            self.__domain, self.__username = re.search(self.__delimeter, username).groups()
+        except AttributeError:
+            self.__username = username
+            self.__domain = ''
         self.__command = command
-        self.__username = username
         self.__password = password
-        self.__domain = domain
         self.__lmhash = ''
         self.__nthash = ''
         self.__aesKey = aesKey

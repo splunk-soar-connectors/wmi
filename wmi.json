@@ -2372,38 +2372,33 @@
                     "default": "ADMIN$",
                     "order": 2
                 },
-                "domain": {
-                    "description": "Domain of server with which we want to connect",
-                    "data_type": "string",
-                    "order": 3
-                },
                 "hashes": {
                     "description": "NTLM hashes, format is LMHASH:NTHASH",
                     "data_type": "string",
-                    "order": 4
+                    "order": 3
                 },
                 "aesKey": {
                     "description": "AES key to use for Kerberos Authentication (128 or 256 bits)",
                     "data_type": "string",
-                    "order": 5
+                    "order": 4
                 },
                 "k": {
                     "description": "Use Kerberos authentication. Grabs credentials from ccache file (KRB5CCNAME) based on target parameters. If valid credentials cannot be found, it will use the ones specified in the command line",
                     "data_type": "boolean",
                     "default": false,
-                    "order": 6
+                    "order": 5
                 },
                 "nooutput": {
                     "description": "Whether or not to print the output (no SMB connection created)",
                     "data_type": "boolean",
                     "default": false,
-                    "order": 7
+                    "order": 6
                 },
                 "silentcommand": {
                     "description": "Does not execute cmd.exe to run given command (no output)",
                     "data_type": "boolean",
                     "default": false,
-                    "order": 8
+                    "order": 7
                 }
             },
             "output": [
@@ -2423,10 +2418,6 @@
                 },
                 {
                     "data_path": "action_result.parameter.command",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.parameter.domain",
                     "data_type": "string"
                 },
                 {

@@ -250,7 +250,6 @@ class WmiConnector(BaseConnector):
         commands = param['command'].split(',')
         shell_type = param['shell_type']
         share = param['share']
-        domain = param.get('domain', '')
         hashes = param.get('hashes', None)
         aesKey = param.get('aesKey', None)
         k = param.get('k', False)
@@ -269,8 +268,8 @@ class WmiConnector(BaseConnector):
             command = None
 
             for command in commands:
-                executer = WMIEXEC(command.strip(), username, password, domain, hashes, aesKey, share,
-                                   nooutput, k, None, shell_type)
+                executer = WMIEXEC(command=command.strip(), username=username, password=password, hashes=hashes, aesKey=aesKey, 
+                                   share=share, noOutput=nooutput, doKerberos=k, shell_type=shell_type)
                 executer.run(ip_address, silentcommand)
                 stdout_arr.append(executer.shell._RemoteShell__outputBuffer)
         except Exception as e:
