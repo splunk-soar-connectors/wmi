@@ -420,11 +420,6 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 **command** |  required  | Command to execute at the target, seperated by comma if more than one is required | string | 
 **shell\_type** |  required  | Choose a command processor for the semi-interactive shell | string | `cmd` `powershell`
 **share** |  required  | Share where the output will be grabbed from \(default ADMIN$\) | string | 
-**hashes** |  optional  | NTLM hashes, format is LMHASH:NTHASH | string | 
-**aesKey** |  optional  | AES key to use for Kerberos Authentication (128 or 256 bits) | string | 
-**k** |  optional  | Use Kerberos authentication. Grabs credentials from ccache file \(KRB5CCNAME\) based on target parameters. If valid credentials cannot be found, it will use the ones specified in the command line | boolean | 
-**nooutput** |  optional  | Whether or not to print the output \(no SMB connection created\) | boolean | 
-**silentcommand** |  optional  | Does not execute cmd.exe to run given command \(no output\) | boolean | 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS
@@ -433,11 +428,6 @@ action\_result\.status | string |
 action\_result\.parameter\.command | string | 
 action\_result\.parameter\.shell\_type | string | `cmd` `powershell`
 action\_result\.parameter\.share | string | 
-action\_result\.parameter\.hashes | string | 
-action\_result\.parameter\.aesKey | string | 
-action\_result\.parameter\.k | boolean | 
-action\_result\.parameter\.nooutput | boolean | 
-action\_result\.parameter\.silentcommand | boolean | 
 action\_result\.data\.\*\.\* | string | 
 action\_result\.summary.stdout | string | 
 action\_result\.message | string | 

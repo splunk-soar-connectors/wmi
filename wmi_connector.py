@@ -250,11 +250,6 @@ class WmiConnector(BaseConnector):
         commands = param['command'].split(',')
         shell_type = param['shell_type']
         share = param['share']
-        hashes = param.get('hashes', None)
-        aesKey = param.get('aesKey', None)
-        k = param.get('k', False)
-        nooutput = param.get('nooutput', False)
-        silentcommand = param.get('silentcommand', False)
 
         self.save_progress("In action handler for: {0}".format(
             self.get_action_identifier()))
@@ -268,9 +263,8 @@ class WmiConnector(BaseConnector):
             command = None
 
             for command in commands:
-                executer = WMIEXEC(command=command.strip(), username=username, password=password, hashes=hashes, aesKey=aesKey, 
-                                   share=share, noOutput=nooutput, doKerberos=k, shell_type=shell_type)
-                executer.run(ip_address, silentcommand)
+                executer = WMIEXEC(command=command.strip(), username=username, password=password, share=share, shell_type=shell_type)
+                executer.run(ip_address)
                 stdout_arr.append(executer.shell._RemoteShell__outputBuffer)
         except Exception as e:
             error_message = self._get_error_message_from_exception(e)
