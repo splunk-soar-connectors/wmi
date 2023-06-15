@@ -49,7 +49,7 @@ class WmiConnector(BaseConnector):
         """
 
         error_code = None
-        error_msg = ERR_MSG_UNAVAILABLE
+        error_msg = ERROR_MSG_UNAVAILABLE
 
         self.error_print("Error occurred.", dump_object=e)
 
@@ -90,7 +90,7 @@ class WmiConnector(BaseConnector):
             ret_data = wmic.query(query)
         except Exception as e:
             action_result.set_status(
-                phantom.APP_ERROR, WMI_ERR_QUERY_EXECUTION_FAILED)
+                phantom.APP_ERROR, WMI_ERROR_QUERY_EXECUTION_FAILED)
             action_result.append_to_message(self._modify_exception_message(e))
             return None
 

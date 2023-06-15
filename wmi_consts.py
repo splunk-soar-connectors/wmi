@@ -14,9 +14,6 @@
 # and limitations under the License.
 
 
-# Json keys specific to wmi app's input parameters/config and the output result
-import time
-
 WMI_JSON_QUERY = "query"
 WMI_JSON_TOTAL_SERVICES = "total_services"
 WMI_JSON_RUNNING_SERVICES = "running_services"
@@ -35,9 +32,9 @@ WMI_SHELL_TYPE_VALUE_LIST = ["cmd", "powershell"]
 
 # Status messages for wmi app
 WMI_SUCC_QUERY_EXECUTED = "WMI Query executed"
-WMI_ERR_QUERY_EXECUTION_FAILED = "WMI query failed"
-WMI_ERR_QUERY_EXECUTION_FAILED += "\nPlease make sure remote WMI access is enabled on the target machine"
-WMI_ERR_QUERY_EXECUTION_FAILED += "\nAny firewall if present is configured to allow remote WMI communication"
+WMI_ERROR_QUERY_EXECUTION_FAILED = "WMI query failed"
+WMI_ERROR_QUERY_EXECUTION_FAILED += "\nPlease make sure remote WMI access is enabled on the target machine"
+WMI_ERROR_QUERY_EXECUTION_FAILED += "\nAny firewall if present is configured to allow remote WMI communication"
 WMI_SUCC_SYS_INFO_QUERIED = "System info queried"
 
 # Progress messages format string
@@ -47,7 +44,6 @@ WMI_MSG_CONNECTION_FAILED = "WMI connection to {machine} failed"
 CONN_PY_PROG_SENDING_QUERY = "Executing WMI query"
 
 # Constants relating to '_get_error_message_from_exception'
-ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
+ERROR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
 
-OUTPUT_FILENAME = '__' + str(time.time())
 CODEC = 'utf-8'

@@ -32,7 +32,9 @@ from impacket.dcerpc.v5.dtypes import NULL
 from impacket.smbconnection import SMB2_DIALECT_002, SMB2_DIALECT_21, SMB_DIALECT, SMBConnection
 from six import PY2
 
-from wmi_consts import CODEC, OUTPUT_FILENAME
+from wmi_consts import CODEC
+
+OUTPUT_FILENAME = '__' + str(time.time())
 
 
 class WMIEXEC:
