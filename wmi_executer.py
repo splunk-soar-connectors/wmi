@@ -267,7 +267,7 @@ class RemoteShell(cmd.Cmd):
                 self.__transferClient.getFile(self.__share, self.__output, output_callback)
                 break
             except Exception as e:
-                if str(e).find('STATUS_SHARING_VIOLATION') >= 0:
+                if str(e).find('STATUS_SHARING_VIOLATION') >= 0 or str(e).find('STATUS_OBJECT_NAME_NOT_FOUND') >= 0:
                     # Output not finished, let's wait
                     time.sleep(1)
                     pass
