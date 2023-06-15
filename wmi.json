@@ -2349,7 +2349,7 @@
             "read_only": false,
             "parameters": {
                 "command": {
-                    "description": "Command to execute at the target, seperated by comma if more than one is required",
+                    "description": "Command to execute at the target, separated by comma if more than one is required",
                     "data_type": "string",
                     "required": true,
                     "order": 0
@@ -2377,8 +2377,6 @@
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "Status",
-                    "column_order": 0,
                     "example_values": [
                         "success",
                         "failed"
@@ -2386,15 +2384,24 @@
                 },
                 {
                     "data_path": "action_result.parameter.command",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "ls, pwd"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.share",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "ADMIN$"
+                    ]
                 },
                 {
                     "data_path": "action_result.parameter.shell_type",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "cmd"
+                    ]
                 },
                 {
                     "data_path": "action_result.data",

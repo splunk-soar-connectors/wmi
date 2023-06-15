@@ -20,8 +20,8 @@ from __future__ import division, print_function
 import cmd
 import logging
 import ntpath
-import re
 import os
+import re
 import sys
 import time
 from base64 import b64encode
@@ -276,6 +276,8 @@ class RemoteShell(cmd.Cmd):
                     logging.debug('Connection broken, trying to recreate it')
                     self.__transferClient.reconnect()
                     return self.get_output()
+                else:
+                    raise Exception(e)
         self.__transferClient.deleteFile(self.__share, self.__output)
 
     def execute_remote(self, data, shell_type='cmd'):

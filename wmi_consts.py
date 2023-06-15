@@ -31,6 +31,7 @@ WMI_JSON_PHYSICAL_MEM = "memory"
 WMI_JSON_WORKGROUP = "workgroup"
 WMI_JSON_DOMAIN = "domain"
 WMI_JSON_VERSION = "version"
+WMI_SHELL_TYPE_VALUE_LIST = ["cmd", "powershell"]
 
 # Status messages for wmi app
 WMI_SUCC_QUERY_EXECUTED = "WMI Query executed"

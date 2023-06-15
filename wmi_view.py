@@ -13,8 +13,6 @@
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
-
-# Json keys specific to wmi app's input parameters/config and the output result
 def get_ctx_result(result):
 
     ctx_result = {}

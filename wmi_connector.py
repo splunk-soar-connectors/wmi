@@ -142,39 +142,35 @@ class WmiConnector(BaseConnector):
         action_result.add_data(cumulative_data)
 
         # Create summary
-        data = action_result.get_data()
-
-        data = data[0]
-
         summary = {}
 
         try:
-            summary[WMI_JSON_DNSHOSTNAME] = data[WMI_JSON_SYSTEM_DETAILS].get(
+            summary[WMI_JSON_DNSHOSTNAME] = cumulative_data[WMI_JSON_SYSTEM_DETAILS].get(
                 'DNSHostName', '')
         except:
             pass
 
         try:
-            summary[WMI_JSON_PHYSICAL_MEM] = data[WMI_JSON_SYSTEM_DETAILS]['TotalPhysicalMemory']
+            summary[WMI_JSON_PHYSICAL_MEM] = cumulative_data[WMI_JSON_SYSTEM_DETAILS]['TotalPhysicalMemory']
         except:
             pass
 
         try:
-            summary[WMI_JSON_WORKGROUP] = data[WMI_JSON_SYSTEM_DETAILS]['Workgroup']
+            summary[WMI_JSON_WORKGROUP] = cumulative_data[WMI_JSON_SYSTEM_DETAILS]['Workgroup']
         except:
             pass
 
         try:
-            summary[WMI_JSON_DOMAIN] = data[WMI_JSON_SYSTEM_DETAILS]['Domain']
+            summary[WMI_JSON_DOMAIN] = cumulative_data[WMI_JSON_SYSTEM_DETAILS]['Domain']
         except:
             pass
 
         try:
             summary[WMI_JSON_VERSION] = '{0} [{1}] {2} {3}'.format(
-                data[WMI_JSON_OS_DETAILS]['Caption'],
-                data[WMI_JSON_OS_DETAILS]['Version'],
-                data[WMI_JSON_OS_DETAILS].get('OSArchitecture', 'Unknown'),
-                data[WMI_JSON_OS_DETAILS]['CSDVersion'])
+                cumulative_data[WMI_JSON_OS_DETAILS]['Caption'],
+                cumulative_data[WMI_JSON_OS_DETAILS]['Version'],
+                cumulative_data[WMI_JSON_OS_DETAILS].get('OSArchitecture', 'Unknown'),
+                cumulative_data[WMI_JSON_OS_DETAILS]['CSDVersion'])
         except:
             pass
 
@@ -247,23 +243,28 @@ class WmiConnector(BaseConnector):
         return action_result.get_status()
 
     def _execute_program(self, param, username, password, ip_address):
-        commands = param['command'].split(',')
-        shell_type = param['shell_type']
-        share = param['share']
 
         self.save_progress("In action handler for: {0}".format(
             self.get_action_identifier()))
         action_result = self.add_action_result(ActionResult(dict(param)))
 
+        commands = param['command']
+        shell_type = param['shell_type']
+        share = param['share']
+
+        commands_list = [x.strip() for x in commands.split(",")]
+        commands_list = list(filter(None, commands_list))
+        if not commands_list:
+            return action_result.set_status(phantom.APP_ERROR, "Please provide a valid value in the 'command' action parameter")
+
         shell_type = shell_type.lower()
-        if shell_type not in ["cmd", "powershell"]:
-            return action_result.set_status(phantom.APP_ERROR, "please enter a valid value for shell type")
+        if shell_type not in WMI_SHELL_TYPE_VALUE_LIST:
+            return action_result.set_status(phantom.APP_ERROR, "Please provide valid input from {} in the 'shell_type' action parameter".format(
+                WMI_SHELL_TYPE_VALUE_LIST))
         stdout_arr = []
         try:
-            command = None
-
-            for command in commands:
-                executer = WMIEXEC(command=command.strip(), username=username, password=password, share=share, shell_type=shell_type)
+            for command in commands_list:
+                executer = WMIEXEC(command=command, username=username, password=password, share=share, shell_type=shell_type)
                 executer.run(ip_address)
                 stdout_arr.append(executer.shell._RemoteShell__outputBuffer)
         except Exception as e:
@@ -271,7 +272,7 @@ class WmiConnector(BaseConnector):
             return action_result.set_status(phantom.APP_ERROR,
                                             f'{"Error occurred while executing program, Error: "}{error_message} for command {command}')
 
-        for output, command in zip(stdout_arr, commands):
+        for output, command in zip(stdout_arr, commands_list):
             action_result.add_data(f"---- Command: {command} \n {output}")
 
         return action_result.set_status(phantom.APP_SUCCESS, 'Program executed successfully')
