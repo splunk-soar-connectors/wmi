@@ -264,6 +264,7 @@ class RemoteShell(cmd.Cmd):
             # self.__outputBuffer = ''
             return
 
+        count = 5
         while True:
             try:
                 self.__transferClient.getFile(self.__share, self.__output, output_callback)
@@ -271,8 +272,10 @@ class RemoteShell(cmd.Cmd):
             except Exception as e:
                 if str(e).find('STATUS_SHARING_VIOLATION') >= 0 or str(e).find('STATUS_OBJECT_NAME_NOT_FOUND') >= 0:
                     # Output not finished, let's wait
-                    time.sleep(1)
-                    pass
+                    count = count - 1
+                    if count < 0:
+                        raise Exception(e)
+                    time.sleep(30)
                 elif str(e).find('Broken') >= 0:
                     # The SMB Connection might have timed out, let's try reconnecting
                     logging.debug('Connection broken, trying to recreate it')
