@@ -169,10 +169,9 @@ class RemoteShell(cmd.Cmd):
             newPath = ntpath.normpath(ntpath.join(self.__pwd, src_path))
             drive, tail = ntpath.splitdrive(newPath)
             filename = ntpath.basename(tail)
-            fh = open(filename, 'wb')
-            logging.info("Downloading %s\\%s" % (drive, tail))
-            self.__transferClient.getFile(drive[:-1] + '$', tail, fh.write)
-            fh.close()
+            with open(filename, 'wb') as fh:
+                logging.info("Downloading %s\\%s" % (drive, tail))
+                self.__transferClient.getFile(drive[:-1] + '$', tail, fh.write)
 
         except Exception as e:
             logging.error(str(e))
@@ -191,14 +190,13 @@ class RemoteShell(cmd.Cmd):
                 dst_path = ''
 
             src_file = os.path.basename(src_path)
-            fh = open(src_path, 'rb')
-            dst_path = dst_path.replace('/', '\\')
-            import ntpath
-            pathname = ntpath.join(ntpath.join(self.__pwd, dst_path), src_file)
-            drive, tail = ntpath.splitdrive(pathname)
-            logging.info("Uploading %s to %s" % (src_file, pathname))
-            self.__transferClient.putFile(drive[:-1] + '$', tail, fh.read)
-            fh.close()
+            with open(src_path, 'rb') as fh:
+                dst_path = dst_path.replace('/', '\\')
+                import ntpath
+                pathname = ntpath.join(ntpath.join(self.__pwd, dst_path), src_file)
+                drive, tail = ntpath.splitdrive(pathname)
+                logging.info("Uploading %s to %s" % (src_file, pathname))
+                self.__transferClient.putFile(drive[:-1] + '$', tail, fh.read)
         except Exception as e:
             logging.critical(str(e))
             pass
