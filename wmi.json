@@ -12,13 +12,13 @@
     "product_vendor": "Microsoft",
     "product_name": "Windows Server",
     "product_version_regex": ".*",
-    "min_phantom_version": "6.0.0",
+    "min_phantom_version": "6.0.2",
     "fips_compliant": false,
     "logo": "logo_microsoft_wmi.svg",
     "logo_dark": "logo_microsoft_wmi_dark.svg",
     "license": "Copyright (c) 2016-2023 Splunk Inc.",
     "latest_tested_versions": [
-        "On-Prem on 8th June, 2023"
+        "On-Prem on 1st August, 2023"
     ],
     "pip_dependencies": {
         "wheel": [
