@@ -49,7 +49,7 @@ class WmiConnector(BaseConnector):
         """
 
         error_code = None
-        error_msg = ERROR_MSG_UNAVAILABLE
+        error_msg = WMI_ERROR_MSG_UNAVAILABLE
 
         self.error_print("Error occurred.", dump_object=e)
 

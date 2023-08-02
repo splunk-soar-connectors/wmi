@@ -32,7 +32,7 @@ from impacket.dcerpc.v5.dtypes import NULL
 from impacket.smbconnection import SMB2_DIALECT_002, SMB2_DIALECT_21, SMB_DIALECT, SMBConnection
 from six import PY2
 
-from wmi_consts import CODEC
+from wmi_consts import WMI_CODEC
 
 OUTPUT_FILENAME = '__' + str(time.time())
 
@@ -251,12 +251,12 @@ class RemoteShell(cmd.Cmd):
     def get_output(self):
         def output_callback(data):
             try:
-                self.__outputBuffer += data.decode(CODEC)
+                self.__outputBuffer += data.decode(WMI_CODEC)
             except UnicodeDecodeError:
                 logging.error('Decoding error detected, consider running chcp.com at the target,\nmap the result with '
                               'https://docs.python.org/3/library/codecs.html#standard-encodings\nand then execute wmiexec.py '
                               'again with -codec and the corresponding codec')
-                self.__outputBuffer += data.decode(CODEC, errors='replace')
+                self.__outputBuffer += data.decode(WMI_CODEC, errors='replace')
 
         if self.__noOutput is True:
             # self.__outputBuffer = ''

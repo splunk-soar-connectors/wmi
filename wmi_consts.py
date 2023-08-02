@@ -40,10 +40,7 @@ WMI_SUCC_SYS_INFO_QUERIED = "System info queried"
 # Progress messages format string
 WMI_MSG_CONNECTION_FAILED = "WMI connection to {machine} failed"
 
-# Progress strings constants, define them first and then use them in the call to send_progress
-CONN_PY_PROG_SENDING_QUERY = "Executing WMI query"
-
 # Constants relating to '_get_error_message_from_exception'
-ERROR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
+WMI_ERROR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
 
-CODEC = 'utf-8'
+WMI_CODEC = 'utf-8'
