@@ -6,7 +6,7 @@
     "type": "endpoint",
     "main_module": "wmi_connector.py",
     "python_version": "3",
-    "app_version": "2.2.0",
+    "app_version": "3.0.0",
     "utctime_updated": "2022-01-07T20:50:38.000000Z",
     "package_name": "phantom_wmi",
     "product_vendor": "Microsoft",
@@ -639,7 +639,7 @@
                 {
                     "data_path": "action_result.data.*.os_details.CSDVersion",
                     "data_type": "string",
-                    "column_name": "Sp Version",
+                    "column_name": "SP Version",
                     "column_order": 4,
                     "example_values": [
                         "Service Pack 1"
@@ -1152,7 +1152,7 @@
                     "contains": [
                         "host name"
                     ],
-                    "column_name": "Dns Host Name",
+                    "column_name": "DNS Host Name",
                     "column_order": 0,
                     "example_values": [
                         "DC1"
@@ -1722,7 +1722,7 @@
                 {
                     "data_path": "action_result.data.*.SID",
                     "data_type": "string",
-                    "column_name": "Sid",
+                    "column_name": "SID",
                     "column_order": 8,
                     "example_values": [
                         "S-1-5-21-3790544232-372029393-2474287633-500"
@@ -1731,7 +1731,7 @@
                 {
                     "data_path": "action_result.data.*.SIDType",
                     "data_type": "string",
-                    "column_name": "Sid Type",
+                    "column_name": "SID Type",
                     "column_order": 9,
                     "example_values": [
                         "1"

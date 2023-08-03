@@ -17,6 +17,7 @@ run WMI commands remotely. Depending upon your setup, this configuration can be 
 Policy Object (GPO) or carried out individually on the endpoint.
 
 This app does not support proxies, and it will ignore any proxy settings.
+This app is not fips-compliant as it uses "ntlm-auth".
 
 ## wmi-client-wrapper
 
