@@ -11,7 +11,7 @@ Minimum Product Version: 5\.1\.0
 This App uses the WMI WQL to implement investigative actions that are executed on a Windows endpoint
 
 [comment]: # " File: README.md"
-[comment]: # "  Copyright (c) 2016-2022 Splunk Inc."
+[comment]: # "  Copyright (c) 2016-2024 Splunk Inc."
 [comment]: # ""
 [comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
 [comment]: # "you may not use this file except in compliance with the License."
