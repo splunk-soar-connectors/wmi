@@ -1,2 +1,2 @@
 **Unreleased**
-* Updated future dependencies in order to use platform packages
+* Removed future dependencies in order to use platform packages [PAPP-33502]
