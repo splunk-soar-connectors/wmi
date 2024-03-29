@@ -38,12 +38,12 @@ WMI_ERROR_QUERY_EXECUTION_FAILED += "\nAny firewall if present is configured to 
 WMI_SUCC_SYS_INFO_QUERIED = "System info queried"
 
 # Progress messages format string
-WMI_MSG_CONNECTION_FAILED = "WMI connection to {machine} failed"
+WMI_MESSAGE_CONNECTION_FAILED = "WMI connection to {machine} failed"
 
 # Progress strings constants, define them first and then use them in the call to send_progress
 CONN_PY_PROG_SENDING_QUERY = "Executing WMI query"
 
 # Constants relating to '_get_error_message_from_exception'
-WMI_ERROR_CODE_MSG = "Error code unavailable"
-WMI_ERROR_MSG_UNAVAILABLE = "Error msg unavailable. Please check the asset configuration and|or action parameters"
-WMI_PARSE_ERROR_MSG = "Unable to parse the error msg. Please check the asset configuration and|or action parameters"
+WMI_ERROR_CODE_MESSAGE = "Error code unavailable"
+WMI_ERROR_MESSAGE_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
+WMI_PARSE_ERROR_MESSAGE = "Unable to parse the error message. Please check the asset configuration and|or action parameters"
