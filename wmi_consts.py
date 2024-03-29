@@ -32,9 +32,9 @@ WMI_JSON_VERSION = "version"
 
 # Status messages for wmi app
 WMI_SUCC_QUERY_EXECUTED = "WMI Query executed"
-WMI_ERR_QUERY_EXECUTION_FAILED = "WMI query failed."
-WMI_ERR_QUERY_EXECUTION_FAILED += "\nPlease make sure remote WMI access is enabled on the target machine."
-WMI_ERR_QUERY_EXECUTION_FAILED += "\nAny firewall if present is configured to allow remote WMI communication"
+WMI_ERROR_QUERY_EXECUTION_FAILED = "WMI query failed."
+WMI_ERROR_QUERY_EXECUTION_FAILED += "\nPlease make sure remote WMI access is enabled on the target machine."
+WMI_ERROR_QUERY_EXECUTION_FAILED += "\nAny firewall if present is configured to allow remote WMI communication"
 WMI_SUCC_SYS_INFO_QUERIED = "System info queried"
 
 # Progress messages format string
@@ -44,6 +44,6 @@ WMI_MSG_CONNECTION_FAILED = "WMI connection to {machine} failed"
 CONN_PY_PROG_SENDING_QUERY = "Executing WMI query"
 
 # Constants relating to '_get_error_message_from_exception'
-WMI_ERR_CODE_MSG = "Error code unavailable"
-WMI_ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
-WMI_PARSE_ERR_MSG = "Unable to parse the error message. Please check the asset configuration and|or action parameters"
+WMI_ERROR_CODE_MSG = "Error code unavailable"
+WMI_ERROR_MSG_UNAVAILABLE = "Error msg unavailable. Please check the asset configuration and|or action parameters"
+WMI_PARSE_ERROR_MSG = "Unable to parse the error msg. Please check the asset configuration and|or action parameters"
