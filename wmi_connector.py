@@ -47,37 +47,37 @@ class WmiConnector(BaseConnector):
         :return: Error message
         """
 
-        error_code = WMI_ERROR_CODE_MESSAGE
-        error_message = WMI_ERROR_MESSAGE_UNAVAILABLE
+        error_code = WMI_ERROR_CODE_MSG
+        error_msg = WMI_ERROR_MSG_UNAVAILABLE
         try:
             if e.args:
                 if len(e.args) > 1:
                     error_code = e.args[0]
-                    error_message = e.args[1]
+                    error_msg = e.args[1]
                 elif len(e.args) == 1:
-                    error_code = WMI_ERROR_CODE_MESSAGE
-                    error_message = e.args[0]
+                    error_code = WMI_ERROR_CODE_MSG
+                    error_msg = e.args[0]
         except:
             pass
 
         try:
-            if error_code in WMI_ERROR_CODE_MESSAGE:
-                error_text = "Error Message: {0}".format(error_message)
+            if error_code in WMI_ERROR_CODE_MSG:
+                error_text = "Error Message: {0}".format(error_msg)
             else:
-                error_text = "Error Code: {0}. Error Message: {1}".format(error_code, error_message)
+                error_text = "Error Code: {0}. Error Message: {1}".format(error_code, error_msg)
         except:
             self.debug_print("Error occurred while parsing error message")
-            error_text = WMI_PARSE_ERROR_MESSAGE
+            error_text = WMI_PARSE_ERROR_MSG
 
         return error_text
 
     def _modify_exception_message(self, e):
 
-        mod_message = re.sub('%.* ', '%<password> ', self._get_error_message_from_exception(e))
+        mod_msg = re.sub('%.* ', '%<password> ', self._get_error_message_from_exception(e))
 
-        self.debug_print("Modified Exception Message:", mod_message)
+        self.debug_print("Modified Exception Message:", mod_msg)
 
-        return mod_message
+        return mod_msg
 
     def _run_query(self, query, wmic, action_result):
 
@@ -288,8 +288,8 @@ class WmiConnector(BaseConnector):
         try:
             wmic = wmi.WmiClientWrapper(username=user, password=passw, host=curr_machine, namespace=namespace, force_ntlm_v2=force_ntlm_v2)
         except Exception as e:
-            self.save_progress(WMI_MESSAGE_CONNECTION_FAILED, machine=curr_machine)
-            action_result.set_status(phantom.APP_ERROR, WMI_MESSAGE_CONNECTION_FAILED, machine=curr_machine)
+            self.save_progress(WMI_MSG_CONNECTION_FAILED, machine=curr_machine)
+            action_result.set_status(phantom.APP_ERROR, WMI_MSG_CONNECTION_FAILED, machine=curr_machine)
             action_result.append_to_message(self._modify_exception_message(e))
             return action_result.get_status()
 
