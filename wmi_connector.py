@@ -39,7 +39,7 @@ class WmiConnector(BaseConnector):
         # Call the BaseConnectors init first
         super(WmiConnector, self).__init__()
 
-    def _get_error_message_from_exception(self, e):
+    def _get_error_msg_from_exception(self, e):
         """
         This method is used to get appropriate error messages from the exception.
 
@@ -73,7 +73,7 @@ class WmiConnector(BaseConnector):
 
     def _modify_exception_message(self, e):
 
-        mod_msg = re.sub('%.* ', '%<password> ', self._get_error_message_from_exception(e))
+        mod_msg = re.sub('%.* ', '%<password> ', self._get_error_msg_from_exception(e))
 
         self.debug_print("Modified Exception Message:", mod_msg)
 
