@@ -1,6 +1,6 @@
 # File: wmi_connector.py
 #
-# Copyright (c) 2016-2022 Splunk Inc.
+# Copyright (c) 2016-2024 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ class WmiConnector(BaseConnector):
         # Call the BaseConnectors init first
         super(WmiConnector, self).__init__()
 
-    def _get_error_message_from_exception(self, e):
+    def _get_error_msg_from_exception(self, e):
         """
         This method is used to get appropriate error messages from the exception.
 
@@ -47,33 +47,33 @@ class WmiConnector(BaseConnector):
         :return: Error message
         """
 
-        error_code = WMI_ERR_CODE_MSG
-        error_msg = WMI_ERR_MSG_UNAVAILABLE
+        error_code = WMI_ERROR_CODE_MSG
+        error_msg = WMI_ERROR_MSG_UNAVAILABLE
         try:
             if e.args:
                 if len(e.args) > 1:
                     error_code = e.args[0]
                     error_msg = e.args[1]
                 elif len(e.args) == 1:
-                    error_code = WMI_ERR_CODE_MSG
+                    error_code = WMI_ERROR_CODE_MSG
                     error_msg = e.args[0]
         except:
             pass
 
         try:
-            if error_code in WMI_ERR_CODE_MSG:
+            if error_code in WMI_ERROR_CODE_MSG:
                 error_text = "Error Message: {0}".format(error_msg)
             else:
                 error_text = "Error Code: {0}. Error Message: {1}".format(error_code, error_msg)
         except:
             self.debug_print("Error occurred while parsing error message")
-            error_text = WMI_PARSE_ERR_MSG
+            error_text = WMI_PARSE_ERROR_MSG
 
         return error_text
 
     def _modify_exception_message(self, e):
 
-        mod_msg = re.sub('%.* ', '%<password> ', self._get_error_message_from_exception(e))
+        mod_msg = re.sub('%.* ', '%<password> ', self._get_error_msg_from_exception(e))
 
         self.debug_print("Modified Exception Message:", mod_msg)
 
@@ -86,7 +86,7 @@ class WmiConnector(BaseConnector):
         try:
             ret_data = wmic.query(query)
         except Exception as e:
-            action_result.set_status(phantom.APP_ERROR, WMI_ERR_QUERY_EXECUTION_FAILED)
+            action_result.set_status(phantom.APP_ERROR, WMI_ERROR_QUERY_EXECUTION_FAILED)
             action_result.append_to_message(self._modify_exception_message(e))
             return None
 
