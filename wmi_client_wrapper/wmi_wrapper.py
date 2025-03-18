@@ -1,10 +1,22 @@
+# Copyright (c) 2025 Splunk Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 """
 Houses the wrapper for wmi-client.
 
 There are a handful of injection vulnerabilities in this, so don't expose it
 directly to end-users.
 """
-from __future__ import absolute_import, division, print_function, unicode_literals
 
 import csv
 import sys
@@ -13,13 +25,14 @@ from io import StringIO
 import sh
 from future import standard_library
 
+
 standard_library.install_aliases()
 
 if int(sys.version_info[0]) < 3:
     from past.types.oldstr import oldstr as str
 
 
-class WmiClientWrapper(object):
+class WmiClientWrapper:
     """
     Wrap wmi-client. Creating an instance of the wrapper will make a security
     context through which all future queries will be executed. It's basically
@@ -29,14 +42,7 @@ class WmiClientWrapper(object):
     it directly to end-users.
     """
 
-    def __init__(self,
-            username="Administrator",
-            password=None,
-            host=None,
-            namespace='//./root/cimv2',
-            delimiter="\01",
-            force_ntlm_v2=False):
-
+    def __init__(self, username="Administrator", password=None, host=None, namespace="//./root/cimv2", delimiter="\01", force_ntlm_v2=False):
         assert username
         assert password
         assert host  # assume host is up
@@ -59,19 +65,16 @@ class WmiClientWrapper(object):
 
         # the format is user%pass
         # NOTE: this is an injection vulnerability
-        userpass = "--user={username}%{password}".format(
-            username=self.username,
-            password=self.password,
-        )
+        userpass = f"--user={self.username}%{self.password}"
 
         arguments.append(userpass)
 
         # the format for ip addresses and host names is //
-        hostaddr = "//{host}".format(host=self.host)
+        hostaddr = f"//{self.host}"
 
         arguments.append(hostaddr)
         # the format for namespace
-        space = "--namespace={namespace}".format(namespace=self.namespace)
+        space = f"--namespace={self.namespace}"
 
         arguments.append(space)
         return arguments
@@ -83,10 +86,10 @@ class WmiClientWrapper(object):
 
         params = []
 
-        if (self.force_ntlm_v2):
-            params.append('--option=client ntlmv2 auth=Yes')
+        if self.force_ntlm_v2:
+            params.append("--option=client ntlmv2 auth=Yes")
 
-        params.append("--delimiter={delimiter}".format(delimiter=self.delimiter))
+        params.append(f"--delimiter={self.delimiter}")
 
         return params
 
@@ -95,7 +98,7 @@ class WmiClientWrapper(object):
         Makes up a WMI query based on a given class.
         """
         # NOTE: this is an injection vulnerability
-        queryx = "SELECT * FROM {klass}".format(klass=klass)
+        queryx = f"SELECT * FROM {klass}"
         return queryx
 
     def query(self, klass):
@@ -161,7 +164,7 @@ class WmiClientWrapper(object):
         for section in sections:
             # remove the first line because it has the query class
             section = "\n".join(section.split("\n")[1:])
-            section = section.replace('\r\n', '\\r\\n')
+            section = section.replace("\r\n", "\\r\\n")
 
             strio = StringIO(section)
 
@@ -197,7 +200,7 @@ class WmiClientWrapper(object):
         elif isinstance(incoming, dict):
             output = dict()
 
-            for (key, value) in list(incoming.items()):
+            for key, value in list(incoming.items()):
                 if value == "(null)":
                     output[key] = None
                 elif value == "True":
