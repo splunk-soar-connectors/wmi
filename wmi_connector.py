@@ -1,6 +1,6 @@
 # File: wmi_connector.py
 #
-# Copyright (c) 2016-2024 Splunk Inc.
+# Copyright (c) 2016-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ from wmi_consts import *
 
 
 class WmiConnector(BaseConnector):
-
     # Actions supported by this script
     ACTION_ID_GET_PROCESSES = "get_processes"
     ACTION_ID_GET_SERVICES = "get_services"
@@ -35,9 +34,8 @@ class WmiConnector(BaseConnector):
     ACTION_ID_GET_SYSINFO = "get_sysinfo"
 
     def __init__(self):
-
         # Call the BaseConnectors init first
-        super(WmiConnector, self).__init__()
+        super().__init__()
 
     def _get_error_msg_from_exception(self, e):
         """
@@ -62,9 +60,9 @@ class WmiConnector(BaseConnector):
 
         try:
             if error_code in WMI_ERROR_CODE_MSG:
-                error_text = "Error Message: {0}".format(error_msg)
+                error_text = f"Error Message: {error_msg}"
             else:
-                error_text = "Error Code: {0}. Error Message: {1}".format(error_code, error_msg)
+                error_text = f"Error Code: {error_code}. Error Message: {error_msg}"
         except:
             self.debug_print("Error occurred while parsing error message")
             error_text = WMI_PARSE_ERROR_MSG
@@ -72,16 +70,14 @@ class WmiConnector(BaseConnector):
         return error_text
 
     def _modify_exception_message(self, e):
-
-        mod_msg = re.sub('%.* ', '%<password> ', self._get_error_msg_from_exception(e))
+        mod_msg = re.sub("%.* ", "%<password> ", self._get_error_msg_from_exception(e))
 
         self.debug_print("Modified Exception Message:", mod_msg)
 
         return mod_msg
 
     def _run_query(self, query, wmic, action_result):
-
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
 
         try:
             ret_data = wmic.query(query)
@@ -107,7 +103,6 @@ class WmiConnector(BaseConnector):
         return ret_data
 
     def _get_sysinfo(self, wmic, action_result):
-
         cumulative_data = {}
 
         query = "select * from Win32_ComputerSystem"
@@ -144,31 +139,32 @@ class WmiConnector(BaseConnector):
         summary = {}
 
         try:
-            summary[WMI_JSON_DNSHOSTNAME] = data[WMI_JSON_SYSTEM_DETAILS].get('DNSHostName', '')
+            summary[WMI_JSON_DNSHOSTNAME] = data[WMI_JSON_SYSTEM_DETAILS].get("DNSHostName", "")
         except:
             pass
 
         try:
-            summary[WMI_JSON_PHYSICAL_MEM] = data[WMI_JSON_SYSTEM_DETAILS]['TotalPhysicalMemory']
+            summary[WMI_JSON_PHYSICAL_MEM] = data[WMI_JSON_SYSTEM_DETAILS]["TotalPhysicalMemory"]
         except:
             pass
 
         try:
-            summary[WMI_JSON_WORKGROUP] = data[WMI_JSON_SYSTEM_DETAILS]['Workgroup']
+            summary[WMI_JSON_WORKGROUP] = data[WMI_JSON_SYSTEM_DETAILS]["Workgroup"]
         except:
             pass
 
         try:
-            summary[WMI_JSON_DOMAIN] = data[WMI_JSON_SYSTEM_DETAILS]['Domain']
+            summary[WMI_JSON_DOMAIN] = data[WMI_JSON_SYSTEM_DETAILS]["Domain"]
         except:
             pass
 
         try:
-            summary[WMI_JSON_VERSION] = '{0} [{1}] {2} {3}'.format(
-                data[WMI_JSON_OS_DETAILS]['Caption'],
-                data[WMI_JSON_OS_DETAILS]['Version'],
-                data[WMI_JSON_OS_DETAILS].get('OSArchitecture', 'Unknown'),
-                data[WMI_JSON_OS_DETAILS]['CSDVersion'])
+            summary[WMI_JSON_VERSION] = "{} [{}] {} {}".format(
+                data[WMI_JSON_OS_DETAILS]["Caption"],
+                data[WMI_JSON_OS_DETAILS]["Version"],
+                data[WMI_JSON_OS_DETAILS].get("OSArchitecture", "Unknown"),
+                data[WMI_JSON_OS_DETAILS]["CSDVersion"],
+            )
         except:
             pass
 
@@ -177,7 +173,6 @@ class WmiConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _get_processes(self, wmic, action_result):
-
         query = "select * from Win32_Process"
 
         ret_data = self._run_query(query, wmic, action_result)
@@ -190,8 +185,7 @@ class WmiConnector(BaseConnector):
         return action_result.get_status()
 
     def _get_services(self, wmic, action, action_result):
-
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
 
         query = "select * from Win32_Service"
 
@@ -206,7 +200,7 @@ class WmiConnector(BaseConnector):
             total_running = 0
             for curr_service in ret_data:
                 action_result.add_data(curr_service)
-                if curr_service.get('State', 'Unknown') == 'Running':
+                if curr_service.get("State", "Unknown") == "Running":
                     total_running += 1
             action_result.update_summary({WMI_JSON_RUNNING_SERVICES: total_running})
         else:
@@ -215,8 +209,7 @@ class WmiConnector(BaseConnector):
         return action_result.get_status()
 
     def _get_users(self, wmic, action_result):
-
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress(f"In action handler for: {self.get_action_identifier()}")
 
         query = "select * from Win32_Account where SIDType = 1"
 
@@ -229,14 +222,13 @@ class WmiConnector(BaseConnector):
             for curr_user in ret_data:
                 # print "Service: \n %s" % curr_user
                 action_result.add_data(curr_user)
-                if curr_user.get('Disabled'):
+                if curr_user.get("Disabled"):
                     total_disabled += 1
             action_result.update_summary({WMI_JSON_DISABLED_USERS: total_disabled})
 
         return action_result.get_status()
 
     def _test_connectivity(self, wmic, action_result):
-
         self.save_progress("Connecting to server")
 
         query = "select * from Win32_ComputerSystem"
@@ -275,7 +267,7 @@ class WmiConnector(BaseConnector):
             curr_machine = param[phantom.APP_JSON_IP_HOSTNAME]
 
         # default to same as default in WmiClientWrapper::__init__()
-        namespace = param.get('namespace', '//./root/cimv2')
+        namespace = param.get("namespace", "//./root/cimv2")
 
         action_result = self.add_action_result(ActionResult(dict(param)))
         action_result.update_param({phantom.APP_JSON_IP_HOSTNAME: curr_machine})
@@ -283,7 +275,7 @@ class WmiConnector(BaseConnector):
 
         self.save_progress(phantom.APP_PROG_CONNECTING_TO_ELLIPSES, curr_machine)
 
-        force_ntlm_v2 = config.get('force_ntlmv2', False)
+        force_ntlm_v2 = config.get("force_ntlmv2", False)
 
         try:
             wmic = wmi.WmiClientWrapper(username=user, password=passw, host=curr_machine, namespace=namespace, force_ntlm_v2=force_ntlm_v2)
@@ -315,8 +307,7 @@ class WmiConnector(BaseConnector):
         return phantom.APP_SUCCESS
 
 
-if __name__ == '__main__':
-
+if __name__ == "__main__":
     import json
     import sys
 
