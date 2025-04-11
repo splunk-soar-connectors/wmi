@@ -20,14 +20,6 @@
     "latest_tested_versions": [
         "On-Prem on 20th August, 2021"
     ],
-    "pip_dependencies": {
-        "wheel": [
-            {
-                "module": "sh",
-                "input_file": "wheels/shared/sh-1.12.14-py2.py3-none-any.whl"
-            }
-        ]
-    },
     "configuration": {
         "server": {
             "data_type": "string",
