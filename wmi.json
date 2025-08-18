@@ -5,14 +5,14 @@
     "publisher": "Splunk",
     "type": "endpoint",
     "main_module": "wmi_connector.py",
-    "python_version": "3",
+    "python_version": "3.9, 3.13",
     "app_version": "2.1.8",
     "utctime_updated": "2022-01-07T20:50:38.000000Z",
     "package_name": "phantom_wmi",
     "product_vendor": "Microsoft",
     "product_name": "Windows Server",
     "product_version_regex": ".*",
-    "min_phantom_version": "5.1.0",
+    "min_phantom_version": "6.3.0",
     "fips_compliant": true,
     "logo": "logo_microsoft_wmi.svg",
     "logo_dark": "logo_microsoft_wmi_dark.svg",
@@ -2254,5 +2254,11 @@
             ],
             "versions": "EQ(*)"
         }
-    ]
+    ],
+    "pip39_dependencies": {
+        "wheel": []
+    },
+    "pip313_dependencies": {
+        "wheel": []
+    }
 }

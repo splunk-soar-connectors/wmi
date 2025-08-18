@@ -1,10 +1,10 @@
 # WMI
 
-Publisher: Splunk \
-Connector Version: 2.1.8 \
-Product Vendor: Microsoft \
-Product Name: Windows Server \
-Minimum Product Version: 5.1.0
+Publisher: Splunk <br>
+Connector Version: 2.1.8 <br>
+Product Vendor: Microsoft <br>
+Product Name: Windows Server <br>
+Minimum Product Version: 6.3.0
 
 This App uses the WMI WQL to implement investigative actions that are executed on a Windows endpoint
 
@@ -37,17 +37,17 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity \
-[list services](#action-list-services) - Get the list of installed services on the system \
-[get system info](#action-get-system-info) - Get information about a system \
-[list users](#action-list-users) - List users configured on a system \
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity <br>
+[list services](#action-list-services) - Get the list of installed services on the system <br>
+[get system info](#action-get-system-info) - Get information about a system <br>
+[list users](#action-list-users) - List users configured on a system <br>
 [run query](#action-run-query) - Run an arbitrary query using WQL on the system
 
 ## action: 'test connectivity'
 
 Validate the asset configuration for connectivity
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -62,7 +62,7 @@ No Output
 
 Get the list of installed services on the system
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -116,7 +116,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Get information about a system
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 For information on Namespaces of Windows Management Instrumentation, refer to the 'Namespace Parameter' section in the documentation.
@@ -278,7 +278,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 List users configured on a system
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 For information on Namespaces of Windows Management Instrumentation, refer to the 'Namespace Parameter' section in the documentation.
@@ -323,7 +323,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Run an arbitrary query using WQL on the system
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 For information on Namespaces of Windows Management Instrumentation, refer to the 'Namespace Parameter' section in the documentation.
