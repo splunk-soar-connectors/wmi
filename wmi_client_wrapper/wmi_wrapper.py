@@ -19,17 +19,9 @@ directly to end-users.
 """
 
 import csv
-import sys
 from io import StringIO
 
 import sh
-from future import standard_library
-
-
-standard_library.install_aliases()
-
-if int(sys.version_info[0]) < 3:
-    from past.types.oldstr import oldstr as str
 
 
 class WmiClientWrapper:
