@@ -1,7 +1,7 @@
 # WMI
 
 Publisher: Splunk <br>
-Connector Version: 2.1.8 <br>
+Connector Version: 2.1.9 <br>
 Product Vendor: Microsoft <br>
 Product Name: Windows Server <br>
 Minimum Product Version: 6.3.0
